@@ -3,10 +3,10 @@ import http from 'http'
 import https from 'https'
 import fs from 'fs-extra'
 import path from 'path'
-import csvtojson from 'csvtojson'
 import * as SocketIo from 'socket.io'
 import { Config } from './config'
-import { DefaultEventsMap } from 'socket.io/dist/typed-events'
+import { SetupSummary } from './summaries/setupSummary'
+import { CardInfo, readCards } from './cards'
 
 export class Server {
   seed = Math.random().toString()
@@ -15,35 +15,34 @@ export class Server {
   app = express()
   httpServer: https.Server | http.Server
   io: SocketIoServer
+  cards?: CardInfo[]
   state = []
   layers = []
 
   constructor () {
     this.setupApp()
     this.httpServer = this.getHttpServer()
+    this.io = new SocketIo.Server(this.httpServer)
+    this.start().catch(() => { throw new Error('Server start promise rejected') })
+  }
+
+  async start (): Promise<void> {
+    this.cards = await readCards()
     this.httpServer.listen(this.config.port, () => {
       console.log(`listening on port: ${this.config.port}`)
     })
-    this.io = new SocketIo.Server(this.httpServer)
     this.io.on('connection', async socket => {
-      const cards = await csvtojson().fromFile('cards.csv')
       console.log('connected:', socket.id)
-      socket.emit('setup', {
-        seed: this.seed,
-        state: this.state,
-        layers: this.layers,
-        plots: cards,
-        playerCount: this.config.playerCount
-      })
-      socket.on('updateServer', msg => {
-        if (msg.seed === this.seed) {
-          // msg.updates.forEach(update => {
-          //   state[update.id] = update
-          //   events[update.id] = { socket, update }
-          //   layers = msg.layers
-          // })
-        }
-      })
+      socket.emit('setup', new SetupSummary(this))
+      // socket.on('updateServer', msg => {
+      //   if (msg.seed === this.seed) {
+      //     msg.updates.forEach(update => {
+      //       state[update.id] = update
+      //       events[update.id] = { socket, update }
+      //       layers = msg.layers
+      //     })
+      //   }
+      // })
     })
   }
 
@@ -69,4 +68,4 @@ export class Server {
   }
 }
 
-type SocketIoServer = SocketIo.Server<DefaultEventsMap, DefaultEventsMap, DefaultEventsMap, any>
+type SocketIoServer = SocketIo.Server

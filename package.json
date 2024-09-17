@@ -15,7 +15,7 @@
     "csvtojson": "^2.0.10",
     "express": "^4.21.0",
     "fs-extra": "^11.2.0",
-    "seedrandom": "^3.0.5",
+    "rand-seed": "^2.1.7",
     "snap.svg.zpd": "^0.0.12",
     "snapsvg": "^0.5.1",
     "socket.io": "^4.7.5",
