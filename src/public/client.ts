@@ -1,5 +1,5 @@
 import io from 'socket.io-client'
-import { SetupSummary } from '../summaries/setupSummary'
+import { SetupMessage } from '../messages/setupMessage'
 import { Tabletop } from './tabletop'
 
 export class Client {
@@ -10,8 +10,8 @@ export class Client {
     this.socket.on('connected', () => {
       console.log('connected')
     })
-    this.socket.on('setup', (setupSummary: SetupSummary) => {
-      this.tabletop = new Tabletop(this, setupSummary)
+    this.socket.on('setup', (setupMessage: SetupMessage) => {
+      this.tabletop = new Tabletop(this, setupMessage)
     })
   }
 }

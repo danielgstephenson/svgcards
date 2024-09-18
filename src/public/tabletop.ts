@@ -1,11 +1,13 @@
 import Rand from 'rand-seed'
-import { SetupSummary } from '../summaries/setupSummary'
+import { SetupMessage } from '../messages/setupMessage'
 import { Client } from './client'
+import { Scribe, Description } from './scribe'
 
 export class Tabletop {
   client: Client
-  setupSummary: SetupSummary
+  setupMessage: SetupMessage
   rand: Rand
+  descriptions: Description[]
   colors = {
     Blue: '#68c3ffff',
     Red: '#ff9797ff',
@@ -15,13 +17,15 @@ export class Tabletop {
     None: 'white'
   }
 
-  constructor (client: Client, setupSummary: SetupSummary) {
+  constructor (client: Client, setupMessage: SetupMessage) {
     this.client = client
-    this.setupSummary = setupSummary
-    this.rand = new Rand(setupSummary.seed)
+    this.setupMessage = setupMessage
+    this.rand = new Rand(setupMessage.seed)
+    const scribe = new Scribe(this)
+    this.descriptions = scribe.descriptions
   }
 
-  setup (setupSummary: SetupSummary): void {
+  setup (setupMessage: SetupMessage): void {
     //
   }
 

@@ -1,19 +1,21 @@
-import { CardInfo } from '../cards'
+import { CardInfo } from '../cardInfo'
 import { Server } from '../server'
 
-export class SetupSummary {
+export class SetupMessage {
   seed: string
-  playerCount: 2 | 3 | 4
+  playerCount: PlayerCount
   state = []
   layers = []
   cards: CardInfo[]
 
   constructor (server: Server) {
     if (server.cards == null) {
-      throw new Error('SetupSummary: server.cards = null')
+      throw new Error('SetupMessage: server.cards = null')
     }
     this.cards = server.cards
     this.seed = server.seed
     this.playerCount = server.config.playerCount
   }
 }
+
+export type PlayerCount = 2 | 3 | 4

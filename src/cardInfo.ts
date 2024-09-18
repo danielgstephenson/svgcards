@@ -6,6 +6,7 @@ export interface CardInfo {
   rank: string
   time: string
   beginning: string
+  end: string
   bonus: string
   title: string
   label1: string

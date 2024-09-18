@@ -5,8 +5,8 @@ import fs from 'fs-extra'
 import path from 'path'
 import * as SocketIo from 'socket.io'
 import { Config } from './config'
-import { SetupSummary } from './summaries/setupSummary'
-import { CardInfo, readCards } from './cards'
+import { SetupMessage } from './messages/setupMessage'
+import { CardInfo, readCards } from './cardInfo'
 
 export class Server {
   seed = Math.random().toString()
@@ -33,7 +33,7 @@ export class Server {
     })
     this.io.on('connection', async socket => {
       console.log('connected:', socket.id)
-      socket.emit('setup', new SetupSummary(this))
+      socket.emit('setup', new SetupMessage(this))
       // socket.on('updateServer', msg => {
       //   if (msg.seed === this.seed) {
       //     msg.updates.forEach(update => {

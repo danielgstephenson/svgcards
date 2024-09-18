@@ -4,28 +4,27 @@ export class Deal {
   portfolio: number[]
   hand: number[]
   reserve: number[]
-  auction: number[]
-  auctionLength: number
+  center: number[]
   market: number
-  dungeon: number
+  exile: number
 
   constructor (tabletop: Tabletop) {
-    const setupSummary = tabletop.setupSummary
-    const playerCount = tabletop.setupSummary.playerCount
-    const cards = setupSummary.cards
+    const setupMessage = tabletop.setupMessage
+    const playerCount = tabletop.setupMessage.playerCount
+    const cards = setupMessage.cards
     const ids = [...cards.keys()]
     const shuffleable = ids.filter(i => i !== 5 && i !== 1)
     const shuffled = tabletop.shuffle(shuffleable)
-    const dealCount = 13 + playerCount * 2
+    const dealCount = 12 + playerCount * 2
     const sliced = shuffled.slice(0, dealCount)
     const sorted = [...sliced].sort((a, b) => a - b)
     const market = sorted.shift()
     if (market == null) throw new Error('market == null')
     this.market = market
     const green = sorted.filter(i => cards[i].color === 'Green').sort((a, b) => a - b)
-    const dungeon = green.shift()
-    if (dungeon == null) throw new Error('dungeon == null')
-    this.dungeon = dungeon
+    const exile = green.shift()
+    if (exile == null) throw new Error('exile == null')
+    this.exile = exile
     const red = sorted.filter(i => cards[i].color === 'Red').sort((a, b) => a - b)
     const yellow = sorted.filter(i => cards[i].color === 'Yellow').sort((a, b) => a - b)
     const portfolioCounts = {
@@ -41,7 +40,6 @@ export class Deal {
     this.portfolio.sort((a, b) => a - b)
     this.hand = this.portfolio.slice(0, 5)
     this.reserve = this.portfolio.slice(5)
-    this.auction = sorted.filter(id => !this.portfolio.includes(id) && this.dungeon !== id)
-    this.auctionLength = playerCount + 5
+    this.center = sorted.filter(id => !this.portfolio.includes(id) && this.exile !== id)
   }
 }
