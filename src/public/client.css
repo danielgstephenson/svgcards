@@ -27,6 +27,7 @@ svg {
   border: 0px solid green;
   margin: 0;
   padding: 0;
+  left: 0;
   position: absolute;
 }
 
@@ -37,7 +38,7 @@ svg {
   width: 29vw; 
   height: 100vh; 
   float: left; 
-  position: absolute;
+  position: relative;
   font-family: monospace;
   font-size: 1.5vh;
 }
@@ -74,6 +75,28 @@ h2, h3 {
   padding: 5px 5px 5px 5px; 
   user-select: none; 
   overflow: hidden;
+}
+
+#loadingDiv {
+  height: 100vh;
+  position: relative;
+  background: snow;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 2vh;
+  padding: 2vh;
+}
+
+#titleDiv {
+  font-size: 9vh;
+  font-weight: bold;
+}
+
+#loadingTextDiv {
+  font-size: 5vh;
+  font-weight: bold;
 }
 
 .hand {

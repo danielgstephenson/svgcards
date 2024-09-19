@@ -4,6 +4,7 @@ import { Stage } from './stage/stage'
 
 export class Client {
   socket = io()
+  setupMessage?: SetupMessage
   stage?: Stage
 
   constructor () {
@@ -11,7 +12,12 @@ export class Client {
       console.log('connected')
     })
     this.socket.on('setup', (setupMessage: SetupMessage) => {
-      this.stage = new Stage(this, setupMessage)
+      if (this.setupMessage == null) {
+        this.setupMessage = setupMessage
+        this.stage = new Stage(this, setupMessage)
+      } else {
+        console.warn('Restart Needed')
+      }
     })
   }
 }

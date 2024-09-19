@@ -28,9 +28,7 @@ export class Stage {
     const height = document.documentElement.clientHeight
     const sideBarShare = 0.29
     const centerX = sideBarShare * width + 0.5 * (1 - sideBarShare) * width
-    console.log('dim:', width, height)
-    this.paper.zoomTo(0.2, 10, undefined, (err) => {
-      if (err !== null) console.log(err)
+    this.paper.zoomTo(0.2, 10, undefined, () => {
       this.paper.panTo(centerX, height / 2)
     })
     this.paper.mousedown(event => {

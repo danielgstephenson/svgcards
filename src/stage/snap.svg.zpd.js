@@ -103,7 +103,7 @@ SVGElement.prototype.getTransformToElement = SVGElement.prototype.getTransformTo
     /**
          * remove node parent but keep children
          */
-    let _removeNodeKeepChildren = function removeNodeKeepChildren (node) {
+    const _removeNodeKeepChildren = function removeNodeKeepChildren (node) {
       if (!node.parentNode) {
         return
       }
@@ -117,7 +117,7 @@ SVGElement.prototype.getTransformToElement = SVGElement.prototype.getTransformTo
          * Detect is +1 -1 or 1
          * increase decrease or just number
          */
-    let _increaseDecreaseOrNumber = function increaseDecreaseOrNumber (defaultValue, input) {
+    const _increaseDecreaseOrNumber = function increaseDecreaseOrNumber (defaultValue, input) {
       if (input === undefined) {
         return parseInt(defaultValue)
       } else if (input[0] == '+') {
@@ -132,7 +132,7 @@ SVGElement.prototype.getTransformToElement = SVGElement.prototype.getTransformTo
     /**
          * Sets the current transform matrix of an element.
          */
-    let _setCTM = function setCTM (element, matrix, threshold) {
+    const _setCTM = function setCTM (element, matrix, threshold) {
       if (threshold && typeof threshold === 'object') { // array [0.5,2]
         const oldMatrix = Snap(element).transform().globalMatrix
 
@@ -148,22 +148,22 @@ SVGElement.prototype.getTransformToElement = SVGElement.prototype.getTransformTo
           return
         }
       }
-      const s = 'matrix(' + matrix.a + ',' + matrix.b + ',' + matrix.c + ',' + matrix.d + ',' + matrix.e + ',' + matrix.f + ')';
+      const s = 'matrix(' + matrix.a + ',' + matrix.b + ',' + matrix.c + ',' + matrix.d + ',' + matrix.e + ',' + matrix.f + ')'
       element.setAttribute('transform', s)
     }
 
     /**
          * Dumps a matrix to a string (useful for debug).
          */
-    let _dumpMatrix = function dumpMatrix (matrix) {
-      const s = '[ ' + matrix.a + ', ' + matrix.c + ', ' + matrix.e + '\n  ' + matrix.b + ', ' + matrix.d + ', ' + matrix.f + '\n  0, 0, 1 ]';
+    const _dumpMatrix = function dumpMatrix (matrix) {
+      const s = '[ ' + matrix.a + ', ' + matrix.c + ', ' + matrix.e + '\n  ' + matrix.b + ', ' + matrix.d + ', ' + matrix.f + '\n  0, 0, 1 ]'
       return s
     }
 
     /**
          * Instance an SVGPoint object with given event coordinates.
          */
-    let _findPos = function findPos (obj) {
+    const _findPos = function findPos (obj) {
       let curleft = 0
       let curtop = 0
       if (obj.offsetParent) {
@@ -174,8 +174,8 @@ SVGElement.prototype.getTransformToElement = SVGElement.prototype.getTransformTo
       }
       return [curleft, curtop]
     }
-    let _getEventPoint = function getEventPoint (event, svgNode) {
-      const p = svgNode.node.createSVGPoint();
+    const _getEventPoint = function getEventPoint (event, svgNode) {
+      const p = svgNode.node.createSVGPoint()
       let svgPos = _findPos(svgNode.node)
 
       p.x = event.clientX - svgPos[0]
@@ -187,7 +187,7 @@ SVGElement.prototype.getTransformToElement = SVGElement.prototype.getTransformTo
     /**
          * Get an svg transformation matrix as string representation
          */
-    let _getSvgMatrixAsString = function _getMatrixAsString (matrix) {
+    const _getSvgMatrixAsString = function _getMatrixAsString (matrix) {
       return 'matrix(' + matrix.a + ',' + matrix.b + ',' + matrix.c + ',' + matrix.d + ',' + matrix.e + ',' + matrix.f + ')'
     }
 
@@ -211,16 +211,16 @@ SVGElement.prototype.getTransformToElement = SVGElement.prototype.getTransformTo
          *     </g>
          * </svg>
          */
-    let _initZpdElement = function initAndGetZpdElement (svgObject, options) {
+    const _initZpdElement = function initAndGetZpdElement (svgObject, options) {
       // get root of svg object
       rootSvgObject = svgObject.node
 
       // get all child nodes in our svg element
-      let rootChildNodes = svgObject.node.childNodes
+      const rootChildNodes = svgObject.node.childNodes
 
       // create a new graphics element in our svg element
-      let gElement = svgObject.g()
-      let gNode = gElement.node
+      const gElement = svgObject.g()
+      const gNode = gElement.node
 
       // add our unique id to the element
       gNode.id = snapsvgzpd.uniqueIdPrefix + svgObject.id
@@ -230,7 +230,7 @@ SVGElement.prototype.getTransformToElement = SVGElement.prototype.getTransformTo
         const matrix = options.load
 
         // create a matrix string from our supplied matrix
-        let matrixString = 'matrix(' + matrix.a + ',' + matrix.b + ',' + matrix.c + ',' + matrix.d + ',' + matrix.e + ',' + matrix.f + ')'
+        const matrixString = 'matrix(' + matrix.a + ',' + matrix.b + ',' + matrix.c + ',' + matrix.d + ',' + matrix.e + ',' + matrix.f + ')'
 
         // load <g> transform matrix
         gElement.transform(matrixString)
@@ -244,7 +244,7 @@ SVGElement.prototype.getTransformToElement = SVGElement.prototype.getTransformTo
 
       // get the number of child nodes in our root node
       // substract -1 to exclude our <g> element
-      let noOfChildNodes = rootChildNodes.length - 1
+      const noOfChildNodes = rootChildNodes.length - 1
 
       // go through all child elements
       // (except the last one, which is our <g> element)
@@ -264,7 +264,7 @@ SVGElement.prototype.getTransformToElement = SVGElement.prototype.getTransformTo
       }
 
       // create an element with all required properties
-      let item = {
+      const item = {
         element: gElement,
         data,
         options
@@ -286,20 +286,19 @@ SVGElement.prototype.getTransformToElement = SVGElement.prototype.getTransformTo
       const handleMouseUp = function handleMouseUp (event) {
         if (event.preventDefault) {
           event.preventDefault()
-                }
+        }
 
         if (!snapsvgzpd.enable) return
 
-                event.returnValue = false
+        event.returnValue = false
 
-                if (zpdElement.data.state == 'pan' || zpdElement.data.state == 'drag') {
+        if (zpdElement.data.state == 'pan' || zpdElement.data.state == 'drag') {
           // quit pan mode
           zpdElement.data.state = ''
-
-                }
+        }
       }
 
-      let handleMouseDown = function handleMouseDown (event) {
+      const handleMouseDown = function handleMouseDown (event) {
         if (event.preventDefault) {
           event.preventDefault()
         }
@@ -308,7 +307,7 @@ SVGElement.prototype.getTransformToElement = SVGElement.prototype.getTransformTo
 
         event.returnValue = false
 
-        let g = zpdElement.element.node
+        const g = zpdElement.element.node
 
         if (
           event.target.tagName == 'svg' || !zpdElement.options.drag // Pan anyway when drag is disabled and the user clicked on an element
@@ -331,7 +330,7 @@ SVGElement.prototype.getTransformToElement = SVGElement.prototype.getTransformTo
         }
       }
 
-      let handleMouseMove = function handleMouseMove (event) {
+      const handleMouseMove = function handleMouseMove (event) {
         if (event.preventDefault) {
           event.preventDefault()
         }
@@ -340,7 +339,7 @@ SVGElement.prototype.getTransformToElement = SVGElement.prototype.getTransformTo
 
         event.returnValue = false
 
-        let g = zpdElement.element.node
+        const g = zpdElement.element.node
 
         if (zpdElement.data.state == 'pan' && zpdElement.options.pan) {
           // Pan mode
@@ -362,7 +361,7 @@ SVGElement.prototype.getTransformToElement = SVGElement.prototype.getTransformTo
         }
       }
 
-      let handleMouseWheel = function handleMouseWheel (event) {
+      const handleMouseWheel = function handleMouseWheel (event) {
         if (!zpdElement.options.zoom) {
           return
         }
@@ -385,14 +384,14 @@ SVGElement.prototype.getTransformToElement = SVGElement.prototype.getTransformTo
 
         const z = Math.pow(1 + zpdElement.options.zoomScale, delta)
 
-        let g = zpdElement.element.node
+        const g = zpdElement.element.node
 
         let p = _getEventPoint(event, zpdElement.data.svg)
 
         p = p.matrixTransform(g.getCTM().inverse())
 
         // Compute new scale matrix in current mouse position
-        let k = zpdElement.data.root.createSVGMatrix().translate(p.x, p.y).scale(z).translate(-p.x, -p.y)
+        const k = zpdElement.data.root.createSVGMatrix().translate(p.x, p.y).scale(z).translate(-p.x, -p.y)
 
         _setCTM(g, g.getCTM().multiply(k), zpdElement.options.zoomThreshold)
 
@@ -415,7 +414,7 @@ SVGElement.prototype.getTransformToElement = SVGElement.prototype.getTransformTo
          * Register handlers
          * desktop and mobile (?)
          */
-    let _setupHandlers = function setupHandlers (svgElement, handlerFunctions) {
+    const _setupHandlers = function setupHandlers (svgElement, handlerFunctions) {
       // mobile
       // (?)
 
@@ -428,7 +427,7 @@ SVGElement.prototype.getTransformToElement = SVGElement.prototype.getTransformTo
 
         if (navigator.userAgent.toLowerCase().indexOf('webkit') >= 0 ||
                     navigator.userAgent.toLowerCase().indexOf('trident') >= 0) {
-          svgElement.addEventListener('mousewheel', handlerFunctions.mouseWheel, false) // Chrome/Safari
+          svgElement.addEventListener('mousewheel', handlerFunctions.mouseWheel, { passive: true }) // Chrome/Safari
         } else {
           svgElement.addEventListener('DOMMouseScroll', handlerFunctions.mouseWheel, false) // Others
         }
@@ -438,7 +437,7 @@ SVGElement.prototype.getTransformToElement = SVGElement.prototype.getTransformTo
     /**
          * remove event handlers
          */
-    let _tearDownHandlers = function tearDownHandlers (svgElement, handlerFunctions) {
+    const _tearDownHandlers = function tearDownHandlers (svgElement, handlerFunctions) {
       svgElement.removeEventListener('mouseup', handlerFunctions.mouseUp, false)
       svgElement.removeEventListener('mousedown', handlerFunctions.mouseDown, false)
       svgElement.removeEventListener('mousemove', handlerFunctions.mouseMove, false)
@@ -452,12 +451,12 @@ SVGElement.prototype.getTransformToElement = SVGElement.prototype.getTransformTo
     }
 
     /* our global zpd function */
-    let zpd = function (options, callbackFunc) {
+    const zpd = function (options, callbackFunc) {
       // get a reference to the current element
-      let self = this
+      const self = this
 
-            // define some custom options
-            var zpdOptions = {
+      // define some custom options
+      let zpdOptions = {
         pan: true, // enable or disable panning (default enabled)
         zoom: true, // enable or disable zooming (default enabled)
         drag: false, // enable or disable dragging (default disabled)
@@ -465,59 +464,59 @@ SVGElement.prototype.getTransformToElement = SVGElement.prototype.getTransformTo
         zoomThreshold: null // define zoom threshold
       }
 
-            // the situation event of zpd, may be init, reinit, destroy, save, origin, toggle
-            var situation;
+      // the situation event of zpd, may be init, reinit, destroy, save, origin, toggle
+      let situation
                 var situationState = {
-          init: 'init',
-          reinit: 'reinit',
-          destroy: 'destroy',
-          save: 'save',
-          origin: 'origin',
-          callback: 'callback',
-          toggle: 'toggle'
-        }
+        init: 'init',
+        reinit: 'reinit',
+        destroy: 'destroy',
+        save: 'save',
+        origin: 'origin',
+        callback: 'callback',
+        toggle: 'toggle'
+      }
 
-            var zpdElement = null
+      let zpdElement = null
 
-            // it is also possible to only specify a callback function without any options
-            if (typeof options === 'function') {
+      // it is also possible to only specify a callback function without any options
+      if (typeof options === 'function') {
         callbackFunc = options
-                situation = situationState.callback
-            }
+        situation = situationState.callback
+      }
 
       // check if element was already initialized
       if (snapsvgzpd.dataStore.hasOwnProperty(self.id)) {
         // return existing element
         zpdElement = snapsvgzpd.dataStore[self.id]
 
-                // adapt the stored options, with the options passed in
-                if (typeof options === 'object') {
-          for (let prop in options) {
+        // adapt the stored options, with the options passed in
+        if (typeof options === 'object') {
+          for (const prop in options) {
             zpdElement.options[prop] = options[prop]
-                    }
+          }
           situation = situationState.reinit
-                } else if (typeof options === 'string') {
+        } else if (typeof options === 'string') {
           situation = options
-                }
+        }
       } else {
         // adapt the default options
         if (typeof options === 'object') {
-          for (let prop2 in options) {
+          for (const prop2 in options) {
             zpdOptions[prop2] = options[prop2]
-                    }
+          }
           situation = situationState.init
-                } else if (typeof options === 'string') {
+        } else if (typeof options === 'string') {
           situation = options
-                }
+        }
 
         // initialize a new element and save it to our global storage
         zpdElement = _initZpdElement(self, zpdOptions)
 
-                // setup the handlers for our svg-canvas
-                _setupHandlers(self.node, zpdElement.handlerFunctions)
+        // setup the handlers for our svg-canvas
+        _setupHandlers(self.node, zpdElement.handlerFunctions)
 
-                snapsvgzpd.dataStore[self.id] = zpdElement
-            }
+        snapsvgzpd.dataStore[self.id] = zpdElement
+      }
 
       switch (situation) {
         case situationState.init:
@@ -527,69 +526,69 @@ SVGElement.prototype.getTransformToElement = SVGElement.prototype.getTransformTo
           // callback
           if (callbackFunc) {
             callbackFunc(null, zpdElement)
-                    }
+          }
 
           return
 
-                case situationState.destroy:
+        case situationState.destroy:
 
           // remove event handlers
           _tearDownHandlers(self.node, zpdElement.handlerFunctions)
 
-                    // remove our custom <g> element
-                    _removeNodeKeepChildren(self.node.firstChild)
+          // remove our custom <g> element
+          _removeNodeKeepChildren(self.node.firstChild)
 
-                    // remove the object from our internal storage
-                    delete snapsvgzpd.dataStore[self.id]
+          // remove the object from our internal storage
+          delete snapsvgzpd.dataStore[self.id]
 
-                    // callback
-                    if (callbackFunc) {
+          // callback
+          if (callbackFunc) {
             callbackFunc(null, zpdElement)
-                    }
+          }
 
           return // exit all
 
-                case situationState.save:
+        case situationState.save:
 
           var g = document.getElementById(snapsvgzpd.uniqueIdPrefix + self.id)
 
-                    var returnValue = g.getCTM()
+          var returnValue = g.getCTM()
 
-                    // callback
-                    if (callbackFunc) {
+          // callback
+          if (callbackFunc) {
             callbackFunc(null, returnValue)
-                    }
+          }
 
           return returnValue
 
-                case situationState.origin:
+        case situationState.origin:
 
           // back to origin location
           self.zoomTo(1, 1000)
 
-                    // callback
-                    if (callbackFunc) {
+          // callback
+          if (callbackFunc) {
             callbackFunc(null, zpdElement)
-                    }
+          }
 
           return
 
-                case situationState.toggle:
+        case situationState.toggle:
 
           // toggle enabled
           snapsvgzpd.enable = !snapsvgzpd.enable
 
-                    // callback
-                    if (callbackFunc) {
+          // callback
+          if (callbackFunc) {
             callbackFunc(null, snapsvgzpd.enable)
-                    }
+          }
       }
     }
 
     /**
          * zoom element to a certain zoom factor
          */
-    let zoomTo = function (zoom, interval, ease, callbackFunction) {
+    const zoomTo = function (zoom, interval, ease, callbackFunction) {
       if (zoom < 0 || typeof zoom !== 'number') {
         console.error('zoomTo(arg) should be a number and greater than 0')
         return
@@ -606,14 +605,14 @@ SVGElement.prototype.getTransformToElement = SVGElement.prototype.getTransformTo
         // get a reference to the element
         const zpdElement = snapsvgzpd.dataStore[self.id].element
 
-        let currentTransformMatrix = zpdElement.node.getTransformToElement(rootSvgObject)
-        let currentZoom = currentTransformMatrix.a
-        let originX = currentTransformMatrix.e
-        let originY = currentTransformMatrix.f
+        const currentTransformMatrix = zpdElement.node.getTransformToElement(rootSvgObject)
+        const currentZoom = currentTransformMatrix.a
+        const originX = currentTransformMatrix.e
+        const originY = currentTransformMatrix.f
 
-        let boundingBox = zpdElement.getBBox()
-        let deltaX = parseFloat(boundingBox.width) / 2.0
-        let deltaY = parseFloat(boundingBox.height) / 2.0
+        const boundingBox = zpdElement.getBBox()
+        const deltaX = parseFloat(boundingBox.width) / 2.0
+        const deltaY = parseFloat(boundingBox.height) / 2.0
 
         Snap.animate(currentZoom, zoom, function (value) {
           // calculate difference of zooming value to initial zoom
@@ -638,7 +637,7 @@ SVGElement.prototype.getTransformToElement = SVGElement.prototype.getTransformTo
     /**
          * move the element to a certain position
          */
-    let panTo = function (x, y, interval, ease, cb) {
+    const panTo = function (x, y, interval, ease, cb) {
       // get a reference to the current element
       const self = this
 
@@ -646,10 +645,10 @@ SVGElement.prototype.getTransformToElement = SVGElement.prototype.getTransformTo
       if (snapsvgzpd.dataStore.hasOwnProperty(self.id)) {
         const zpdElement = snapsvgzpd.dataStore[self.id].element
 
-        let gMatrix = zpdElement.node.getCTM()
-                    var matrixX = _increaseDecreaseOrNumber(gMatrix.e, x)
-                    var matrixY = _increaseDecreaseOrNumber(gMatrix.f, y)
-                    var matrixString = 'matrix(' + gMatrix.a + ',' + gMatrix.b + ',' + gMatrix.c + ',' + gMatrix.d + ',' + matrixX + ',' + matrixY + ')'
+        const gMatrix = zpdElement.node.getCTM()
+        let matrixX = _increaseDecreaseOrNumber(gMatrix.e, x)
+        let matrixY = _increaseDecreaseOrNumber(gMatrix.f, y)
+        let matrixString = 'matrix(' + gMatrix.a + ',' + gMatrix.b + ',' + gMatrix.c + ',' + gMatrix.d + ',' + matrixX + ',' + matrixY + ')'
 
         // dataStore[me.id].transform(matrixString); // load <g> transform matrix
         zpdElement.animate({ transform: matrixString }, interval || 10, ease || null, function () {
@@ -663,7 +662,7 @@ SVGElement.prototype.getTransformToElement = SVGElement.prototype.getTransformTo
     /**
          * rotate the element to a certain rotation
          */
-    let rotate = function (a, x, y, interval, ease, cb) {
+    const rotate = function (a, x, y, interval, ease, cb) {
       // get a reference to the current element
       const self = this
 
@@ -671,8 +670,8 @@ SVGElement.prototype.getTransformToElement = SVGElement.prototype.getTransformTo
       if (snapsvgzpd.dataStore.hasOwnProperty(self.id)) {
         const zpdElement = snapsvgzpd.dataStore[self.id].element
 
-        let gMatrix = zpdElement.node.getCTM()
-                    var matrixString = 'matrix(' + gMatrix.a + ',' + gMatrix.b + ',' + gMatrix.c + ',' + gMatrix.d + ',' + gMatrix.e + ',' + gMatrix.f + ')'
+        const gMatrix = zpdElement.node.getCTM()
+        let matrixString = 'matrix(' + gMatrix.a + ',' + gMatrix.b + ',' + gMatrix.c + ',' + gMatrix.d + ',' + gMatrix.e + ',' + gMatrix.f + ')'
 
         if (!x || typeof x !== 'number') {
           x = self.node.offsetWidth / 2
