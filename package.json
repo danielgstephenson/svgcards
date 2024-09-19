@@ -4,27 +4,28 @@
   "description": "",
   "scripts": {
     "build:server": "npx tsc -build ./src",
-    "build:client": "npx parcel build ./src/public/client.html --dist-dir \"dist/public\"",
-    "build": "npm run build:server && npm run build:client",
+    "build:client": "npx parcel build ./src/public/client.html --dist-dir \"dist/public\" --no-optimize",
+    "moveassets": "cp -r ./src/public/assets ./dist/public",
+    "build": "npm run build:server && npm run build:client && npm run moveassets",
     "start": "node ./dist",
     "dev": "npm run build && npm run start"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/snapsvg": "^0.5.8",
     "csvtojson": "^2.0.10",
     "express": "^4.21.0",
     "fs-extra": "^11.2.0",
     "rand-seed": "^2.1.7",
     "snap.svg.zpd": "^0.0.12",
-    "snapsvg": "^0.5.1",
+    "snapsvg-cjs-ts": "^0.0.6",
     "socket.io": "^4.7.5",
     "socket.io-client": "^4.7.5"
   },
   "devDependencies": {
     "@types/express": "^4.17.21",
     "@types/fs-extra": "^11.0.4",
-    "@types/snapsvg": "^0.5.8",
     "buffer": "^6.0.3",
     "ts-standard": "^12.0.2"
   },

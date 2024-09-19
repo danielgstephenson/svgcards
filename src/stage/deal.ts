@@ -1,4 +1,4 @@
-import { Tabletop } from './tabletop'
+import { Stage } from './stage'
 
 export class Deal {
   portfolio: number[]
@@ -8,13 +8,13 @@ export class Deal {
   market: number
   exile: number
 
-  constructor (tabletop: Tabletop) {
-    const setupMessage = tabletop.setupMessage
-    const playerCount = tabletop.setupMessage.playerCount
+  constructor (stage: Stage) {
+    const setupMessage = stage.setupMessage
+    const playerCount = stage.setupMessage.playerCount
     const cards = setupMessage.cards
     const ids = [...cards.keys()]
     const shuffleable = ids.filter(i => i !== 5 && i !== 1)
-    const shuffled = tabletop.shuffle(shuffleable)
+    const shuffled = stage.shuffle(shuffleable)
     const dealCount = 12 + playerCount * 2
     const sliced = shuffled.slice(0, dealCount)
     const sorted = [...sliced].sort((a, b) => a - b)

@@ -2,7 +2,7 @@
   "compilerOptions": {
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
-    "target": "ESNext",
+    "target": "ES2015",
     "outDir": "../dist",
     "esModuleInterop": true,
     "lib": [

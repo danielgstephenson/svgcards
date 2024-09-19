@@ -1,21 +1,21 @@
 import { range } from '../math'
 import { PlayerCount, SetupMessage } from '../messages/setupMessage'
 import { Deal } from './deal'
-import { Tabletop } from './tabletop'
+import { Stage } from './stage'
 
 export class Scribe {
-  tabletop: Tabletop
+  stage: Stage
   setupMessage: SetupMessage
   descriptions: Description[]
   playerCount: PlayerCount
   deal: Deal
   tableWidth = 3700
 
-  constructor (tabletop: Tabletop) {
-    this.tabletop = tabletop
-    this.setupMessage = tabletop.setupMessage
+  constructor (stage: Stage) {
+    this.stage = stage
+    this.setupMessage = stage.setupMessage
     this.playerCount = this.setupMessage.playerCount
-    this.deal = new Deal(tabletop)
+    this.deal = new Deal(stage)
     this.descriptions = this.getDescriptions()
   }
 

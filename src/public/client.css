@@ -27,22 +27,51 @@ svg {
   border: 0px solid green;
   margin: 0;
   padding: 0;
+  position: absolute;
 }
 
 pre {
   white-space: break-spaces;
 }
 
-#detail {
-  font-size: 1.8vh;
-  text-align: left;
-  height: 40vh;
+#sideBar {
+  background: #f7f1f5; 
+  color: black;
+  border: 0px solid black;
+  width: 29vw; 
+  height: 100vh; 
+  float: left; 
+  position: absolute;
+}
+
+#roundStructure {
+  font-size: 1.5vh; 
+  text-align: left; 
+  height: 49vh;
   border: 5px solid black;
   border-top: 0px;
-  border-bottom: 0px;
-  padding: 15px;
-  user-select: none;
-  overflow: auto;
+  border-bottom: 0px; 
+  padding: 5px; 
+  user-select: none; 
+  overflow: hidden;
+}
+
+#detailBox {
+  color: black;
+  height: 36vh; 
+  border: 5px solid black; 
+}
+
+#victoryRules {
+  font-size: 1.5vh; 
+  text-align: left; 
+  height: 15vh; 
+  border: 5px solid black; 
+  border-top: 0px;
+  border-bottom: 0px; 
+  padding: 5px 5px 5px 5px; 
+  user-select: none; 
+  overflow: hidden;
 }
 
 .hand {
