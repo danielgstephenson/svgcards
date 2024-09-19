@@ -3,6 +3,7 @@ import { Template } from '../parts/template'
 import { Description, Scribe } from './scribe'
 import { Stage } from './stage'
 import { unique } from '../math'
+import { Part } from '../parts/part'
 
 export class Builder {
   stage: Stage
@@ -10,6 +11,7 @@ export class Builder {
   descriptions: Description[]
   loadingDiv: HTMLDivElement
   templates = new Map<string, Template>()
+  parts: Part[] = []
 
   colors = {
     Blue: '#68c3ffff',
@@ -29,12 +31,22 @@ export class Builder {
   }
 
   build (): void {
-    this.loadingDiv.style.display = 'none'
+    this.descriptions.forEach(description => {
+      const part = new Part(this, description)
+      this.parts.push(part)
+    })
     console.log('build')
+    this.loadingDiv.style.display = 'none'
   }
 
   makeTemplates (): void {
-    const files = unique(this.descriptions.map(description => description.file))
+    const descriptionFiles = unique(this.descriptions.map(description => description.file))
+    const extraFiles = [
+      'card/back', 'card/hidden', 'card/facedown', 'card/hourglass', 'card/gold',
+      'board/screen-back', 'board/screen-hidden', 'board/screen-facedown',
+      'board/ready-back', 'card/pawn', 'card/selected', 'gold/selected', 'gold/dollarSelected'
+    ]
+    const files = [...descriptionFiles, ...extraFiles]
     files.forEach(file => {
       const path = `assets/${file}.svg`
       Snap.load(path, (fragment: Snap.Fragment) => {

@@ -14,6 +14,6 @@ export class Template {
     const startMatrix = this.element.transform().localMatrix.translate(-0.5 * width, -0.5 * height)
     this.element.transform(startMatrix.toTransformString())
     this.builder.stage.group.append(this.element)
-    // this.element.node.style.display = 'none'
+    this.element.node.style.display = 'none'
   }
 }
