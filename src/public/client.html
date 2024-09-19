@@ -16,142 +16,38 @@
     <div class="hand" id="hand-6"></div>
     <div id='sideBar'>
       <div id="roundStructure">
-        ROUND
+        <h2>Round Structure</h2>
+        <h3>Phase 1 - Attack</h3>
+        - Abandon 1 city in your hand face down <br>
+        - Attack 1 city from your hand face down <br>
+        <h3>Phase 2 - Regroup</h3>
+        - Draw from battle or take villages until you have at least 3 in hand <br>
+        <h3>Phase 3 - Unrest</h3>
+        - Reveal attacked city simultaneously <br>
+        - If total unrest in attacked cities is more than player count, smallest front line city falls into chaos <br>
+        <h3>Phase 4 - Powers</h3>
+        - Use listed powers on city you attacked <br>
+        <h3>Phase 5 - Counterattack</h3>
+        - Biggest city under attack falls into chaos, Tsar takes ties <br>
+        - If front line is empty, game ends <br>
+        <h3>Phase 6 - Auction</h3>
+        - Use bonus powers on cities under attack <br>
+        - Raise bid by any amount of imperial rubles any time <br>
+        - Withdraw if tied and not last bidder <br>
+        - When no one wants to, highest untied bidder places smallest city on the front line under attack <br>
+        - Buyer may take any cities in chaos, Tsar takes remaining <br>
+        <h3>Phase 7 - Battle</h3>
+        - Cities under attack enter battle from smallest to biggest <br>
       </div>
-      <div id="detailBox">
-        DETAILS
-      </div>
+      <div id="detailBox"></div>
       <div id="victoryRules">
-        VICTORY
+        <h3>Victory</h3>
+        - Points equals size of cities in hand and under attack <br>
+        - 1 point for rubles <br>
+        - No points for cities in battle <br>
+        - Tiebreaker is biggest city in hand <br>
       </div>
     </div>
-    <!--
-      <div style="width: 100vw; height: 100vh; border: 0px; padding: 0px; float: right; position: absolute;"></div>
-      </div>
-    -->
-  <!--
-    <div style="background: snow; color: black; width: 29%; height: 100vh; float: left;">
-    <div style="font-size: 1.5vh; text-align: left; height: 49vh; border: 5px solid black; border-top: 0px; padding: 5px; user-select: none; overflow: hidden;">
-<h2>Round Structure</h2>
-<h3>Phase 1 - Attack</h3>
-<pre>
-- Abandon 1 city in your hand face down
-- Attack 1 city from your hand face down
-</pre>
-<h3>Phase 2 - Regroup</h3>
-<pre>
-- Draw from battle or take villages until you have at least 3 in hand
-</pre>
-<h3>Phase 3 - Unrest</h3>
-<pre>
-- Reveal attacked city simultaneously
-- If total unrest in attacked cities is more than player count, smallest front line city falls into chaos 
-</pre>
-<h3>Phase 4 - Powers</h3>
-<pre>
-- Use listed powers on city you attacked
-</pre>
-<h3>Phase 5 - Counterattack</h3>
-<pre>
-- Biggest city under attack falls into chaos, Tsar takes ties
-- If front line is empty, game ends
-</pre>
-<h3>Phase 6 - Auction</h3>
-<pre>
-- Use bonus powers on cities under attack
-- Raise bid by any amount of imperial rubles any time
-- Withdraw if tied and not last bidder
-- When no one wants to, highest untied bidder places smallest city on the front line under attack
-- Buyer may take any cities in chaos, Tsar takes remaining
-</pre>
-<h3>Phase 7 - Battle</h3>
-<pre>
-- Cities under attack enter battle from smallest to biggest 
-</pre>
-      </div>
-      <div id="detail" style="color: black;"></div>
-      <div style="font-size: 1.5vh; text-align: left; height: 15vh; border: 5px solid black; border-bottom: 0px; padding: 5px 5px 5px 5px; user-select: none; overflow: hidden;">
-<h3>Victory</h3>
-<pre>
-- Points equals size of cities in hand and under attack
-- 1 point for rubles
-- No points for cities in battle
-- Tiebreaker is biggest city in hand
-</pre>
-      </div>
-    </div>
-    <div
-      id="title"
-      style="
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        background: snow;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        gap: 2vh;
-        padding: 2vh;
-        visibility: hidden;
-        z-index: -1;
-      "
-    >
-      <p
-        style="
-          font-size: 3vh;
-          font-weight: bold;
-          color: black;
-        "
-      >
-        Kronstadt 1921
-      </p>
-    </div>
-    <div
-      id="loading"
-      style="
-        position: absolute;
-        width: 75%;
-        height: 100%;
-        background: f7f1f5;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        right: 0;
-        color: black;
-      "
-    >
-      <div
-        style="
-          padding: 1vh;
-          text-align: center;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          gap: 6vh;
-        "
-      >
-        <p
-          style="
-            font-size: 9vh;
-            font-weight: bold;
-          "
-        >
-          Kronstadt 1921
-        </p>
-
-        <p
-          style="
-            font-size: 5vh;
-            font-weight: bold;
-          "
-        >
-          Loading...
-        </p>
-      </div>
-    </div>
-    -->
     <script src="client-index.ts" type="module"></script>
   </body>
 </html>

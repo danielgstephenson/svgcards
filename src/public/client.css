@@ -30,10 +30,6 @@ svg {
   position: absolute;
 }
 
-pre {
-  white-space: break-spaces;
-}
-
 #sideBar {
   background: #f7f1f5; 
   color: black;
@@ -42,6 +38,12 @@ pre {
   height: 100vh; 
   float: left; 
   position: absolute;
+  font-family: monospace;
+  font-size: 1.5vh;
+}
+
+h2, h3 {
+  font-family: serif;
 }
 
 #roundStructure {
