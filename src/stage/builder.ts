@@ -2,7 +2,7 @@ import Snap from 'snapsvg-cjs-ts'
 import { Template } from '../parts/template'
 import { Description, Scribe } from './scribe'
 import { Stage } from './stage'
-import { unique } from '../math'
+import { range, unique } from '../math'
 import { Part } from '../parts/part'
 
 export class Builder {
@@ -32,8 +32,10 @@ export class Builder {
 
   build (): void {
     this.descriptions.forEach(description => {
-      const part = new Part(this, description)
-      this.parts.push(part)
+      range(description.clones + 1).forEach(i => {
+        const part = new Part(this, description)
+        this.parts.push(part)
+      })
     })
     console.log('build')
     this.loadingDiv.style.display = 'none'
