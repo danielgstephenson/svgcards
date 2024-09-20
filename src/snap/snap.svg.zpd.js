@@ -366,13 +366,7 @@ SVGElement.prototype.getTransformToElement = SVGElement.prototype.getTransformTo
           return
         }
 
-        if (event.preventDefault) {
-          event.preventDefault()
-        }
-
         if (!snapsvgzpd.enable) return
-
-        event.returnValue = false
 
         let delta = 0
 
@@ -466,7 +460,7 @@ SVGElement.prototype.getTransformToElement = SVGElement.prototype.getTransformTo
 
       // the situation event of zpd, may be init, reinit, destroy, save, origin, toggle
       let situation
-      let situationState = {
+      const situationState = {
         init: 'init',
         reinit: 'reinit',
         destroy: 'destroy',

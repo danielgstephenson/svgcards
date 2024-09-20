@@ -12,7 +12,6 @@ export class Builder {
   descriptions: Description[]
   loadingDiv: HTMLDivElement
   templates = new Map<string, Template>()
-  parts: Part[] = []
 
   colors = new Map<string, string>([
     ['Blue', '#68c3ffff'],
@@ -39,6 +38,7 @@ export class Builder {
     })
     console.log('build')
     this.loadingDiv.style.display = 'none'
+    setInterval(() => this.stage.client.updateServer(), 300)
   }
 
   buildPart (description: Description): Part {

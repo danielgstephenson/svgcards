@@ -4,7 +4,8 @@ import { Client } from '../client'
 import { Scribe } from './scribe'
 import { Builder } from './builder'
 import Snap from 'snapsvg-cjs-ts'
-import './snap.svg.zpd.js'
+import '../snap/snap.svg.zpd.js'
+import { Part } from '../parts/part'
 
 export class Stage {
   client: Client
@@ -14,6 +15,7 @@ export class Stage {
   rand: Rand
   scribe: Scribe
   builder: Builder
+  parts: Part[] = []
 
   constructor (client: Client, setupMessage: SetupMessage) {
     this.client = client
@@ -38,14 +40,6 @@ export class Stage {
     this.paper.mouseup(event => {
       if (event.button === 2) this.paper.zpd({ pan: false })
     })
-  }
-
-  setup (setupMessage: SetupMessage): void {
-    // TODO:
-    // Builder Class
-    // Template Class
-    // Create Templates
-    // ...
   }
 
   shuffle <T> (array: T[]): T[] {
