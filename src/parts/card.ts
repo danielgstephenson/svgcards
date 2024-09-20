@@ -13,5 +13,19 @@ export class Card extends Part {
     this.color = this.builder.colors.get(this.cardInfo.color) ?? 'white'
     const rectElement = this.element.children()[1].children()[1]
     rectElement.attr({ fill: this.color })
+    this.addRankText()
+  }
+
+  addRankText (): void {
+    const group = this.builder.stage.group
+    const rank = this.cardInfo.rank
+    const rankX = 50
+    const rankY = 1040
+    const rankTextElement = group.text(rankX, rankY, rank)
+    rankTextElement.attr({ fontSize: 80 })
+    rankTextElement.attr({ textAnchor: 'middle' })
+    rankTextElement.attr({ fontFamily: 'sans-serif' })
+    rankTextElement.attr({ fontWeight: 'bold' })
+    this.element.add(rankTextElement)
   }
 }
