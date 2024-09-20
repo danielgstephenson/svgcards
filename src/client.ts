@@ -1,6 +1,7 @@
 import io from 'socket.io-client'
 import { SetupMessage } from './messages/setupMessage'
 import { Stage } from './stage/stage'
+import { ClientMessage } from './messages/clientMessage'
 
 export class Client {
   socket = io()
@@ -22,6 +23,9 @@ export class Client {
   }
 
   updateServer (): void {
-    //
+    if (this.stage?.buildComplete === true) {
+      const message = new ClientMessage(this.stage)
+      this.socket.emit('clientUpdateServer', message)
+    }
   }
 }

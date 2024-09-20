@@ -22,6 +22,7 @@ export class Part {
   moved = false
   index: number
   side = 'front'
+  text = ''
   layer = 0
 
   constructor (builder: Builder, description: Description) {

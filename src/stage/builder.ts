@@ -38,7 +38,7 @@ export class Builder {
     })
     console.log('build')
     this.loadingDiv.style.display = 'none'
-    setInterval(() => this.stage.client.updateServer(), 300)
+    this.stage.buildComplete = true
   }
 
   buildPart (description: Description): Part {

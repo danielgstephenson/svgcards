@@ -10,17 +10,22 @@ import { Part } from '../parts/part'
 export class Stage {
   client: Client
   setupMessage: SetupMessage
+  socketId: string
   paper: Snap.Paper
   group: Snap.Paper
+  seed: string
   rand: Rand
   scribe: Scribe
   builder: Builder
+  buildComplete = false
   parts: Part[] = []
 
   constructor (client: Client, setupMessage: SetupMessage) {
     this.client = client
+    this.socketId = setupMessage.socketId
     this.paper = Snap('#mysvg')
-    this.rand = new Rand(setupMessage.seed)
+    this.seed = setupMessage.seed
+    this.rand = new Rand(this.seed)
     this.setupMessage = setupMessage
     this.group = this.paper.group()
     this.scribe = new Scribe(this)
