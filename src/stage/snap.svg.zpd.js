@@ -176,7 +176,7 @@ SVGElement.prototype.getTransformToElement = SVGElement.prototype.getTransformTo
     }
     const _getEventPoint = function getEventPoint (event, svgNode) {
       const p = svgNode.node.createSVGPoint()
-      let svgPos = _findPos(svgNode.node)
+      const svgPos = _findPos(svgNode.node)
 
       p.x = event.clientX - svgPos[0]
       p.y = event.clientY - svgPos[1]
@@ -456,7 +456,7 @@ SVGElement.prototype.getTransformToElement = SVGElement.prototype.getTransformTo
       const self = this
 
       // define some custom options
-      let zpdOptions = {
+      const zpdOptions = {
         pan: true, // enable or disable panning (default enabled)
         zoom: true, // enable or disable zooming (default enabled)
         drag: false, // enable or disable dragging (default disabled)
@@ -466,7 +466,7 @@ SVGElement.prototype.getTransformToElement = SVGElement.prototype.getTransformTo
 
       // the situation event of zpd, may be init, reinit, destroy, save, origin, toggle
       let situation
-                var situationState = {
+      let situationState = {
         init: 'init',
         reinit: 'reinit',
         destroy: 'destroy',
@@ -646,9 +646,9 @@ SVGElement.prototype.getTransformToElement = SVGElement.prototype.getTransformTo
         const zpdElement = snapsvgzpd.dataStore[self.id].element
 
         const gMatrix = zpdElement.node.getCTM()
-        let matrixX = _increaseDecreaseOrNumber(gMatrix.e, x)
-        let matrixY = _increaseDecreaseOrNumber(gMatrix.f, y)
-        let matrixString = 'matrix(' + gMatrix.a + ',' + gMatrix.b + ',' + gMatrix.c + ',' + gMatrix.d + ',' + matrixX + ',' + matrixY + ')'
+        const matrixX = _increaseDecreaseOrNumber(gMatrix.e, x)
+        const matrixY = _increaseDecreaseOrNumber(gMatrix.f, y)
+        const matrixString = 'matrix(' + gMatrix.a + ',' + gMatrix.b + ',' + gMatrix.c + ',' + gMatrix.d + ',' + matrixX + ',' + matrixY + ')'
 
         // dataStore[me.id].transform(matrixString); // load <g> transform matrix
         zpdElement.animate({ transform: matrixString }, interval || 10, ease || null, function () {
@@ -671,7 +671,7 @@ SVGElement.prototype.getTransformToElement = SVGElement.prototype.getTransformTo
         const zpdElement = snapsvgzpd.dataStore[self.id].element
 
         const gMatrix = zpdElement.node.getCTM()
-        let matrixString = 'matrix(' + gMatrix.a + ',' + gMatrix.b + ',' + gMatrix.c + ',' + gMatrix.d + ',' + gMatrix.e + ',' + gMatrix.f + ')'
+        const matrixString = 'matrix(' + gMatrix.a + ',' + gMatrix.b + ',' + gMatrix.c + ',' + gMatrix.d + ',' + gMatrix.e + ',' + gMatrix.f + ')'
 
         if (!x || typeof x !== 'number') {
           x = self.node.offsetWidth / 2

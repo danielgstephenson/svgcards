@@ -23,7 +23,7 @@ export class Stage {
     this.group = this.paper.group()
     this.scribe = new Scribe(this)
     this.builder = new Builder(this)
-    this.paper.zpd({ zoom: true, pan: true, drag: false })
+    this.paper.zpd({ zoom: true, pan: false, drag: false })
     const width = document.documentElement.clientWidth
     const height = document.documentElement.clientHeight
     const sideBarShare = 0.29

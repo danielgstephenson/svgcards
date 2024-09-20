@@ -5,7 +5,7 @@
    viewBox="0 0 120.00008 120.00008"
    id="svg2"
    version="1.1"
-   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   inkscape:version="1.1.2 (b8e25be833, 2022-02-05)"
    sodipodi:docname="1.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -25,17 +25,17 @@
      inkscape:pageshadow="2"
      inkscape:zoom="3.9041905"
      inkscape:cx="54.428697"
-     inkscape:cy="78.377324"
+     inkscape:cy="78.377323"
      inkscape:document-units="in"
      inkscape:current-layer="g20"
      showgrid="true"
      units="in"
      inkscape:showpageshadow="false"
      showguides="false"
-     inkscape:window-width="1866"
-     inkscape:window-height="1008"
-     inkscape:window-x="1974"
-     inkscape:window-y="35"
+     inkscape:window-width="1920"
+     inkscape:window-height="1009"
+     inkscape:window-x="1912"
+     inkscape:window-y="-12"
      inkscape:window-maximized="1"
      objecttolerance="10000"
      inkscape:snap-bbox="true"
@@ -49,7 +49,8 @@
      inkscape:document-rotation="0"
      inkscape:snap-bbox-midpoints="true"
      inkscape:pagecheckerboard="0"
-     inkscape:deskcolor="#d1d1d1" />
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:snap-global="false" />
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -75,17 +76,16 @@
          cx="-8.3963528"
          cy="787.5639"
          r="76.778587" />
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:104.634px;line-height:1.25;font-family:FreeSans;-inkscape-font-specification:FreeSans;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1.33929"
-         x="-37.243828"
-         y="824.65668"
-         id="text3475"><tspan
-           sodipodi:role="line"
-           id="tspan3473"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:FreeSans;-inkscape-font-specification:FreeSans;fill:#ffffff;stroke-width:1.33929"
-           x="-37.243828"
-           y="824.65668">1</tspan></text>
+      <g
+         aria-label="1"
+         transform="matrix(0.82614294,0,0,0.93450476,0.37442149,82.944651)"
+         id="text2514"
+         style="font-size:111.668px;line-height:1.25;stroke-width:1.49557">
+        <path
+           d="m -12.727051,737.07776 v 54.60565 H 2.9064685 V 712.5108 H -7.4786554 c -2.456696,9.38011 -10.6084596,14.18184 -24.2319556,14.18184 v 10.38512 z"
+           style="font-weight:bold;font-family:FreeSans;-inkscape-font-specification:'FreeSans Bold';fill:#ffffff"
+           id="path10754" />
+      </g>
     </g>
   </g>
 </svg>
