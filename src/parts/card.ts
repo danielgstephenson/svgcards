@@ -30,7 +30,7 @@ export class Card extends Part {
     const hourglassFile = 'card/hourglass'
     const hourglassTemplate = this.builder.templates.get(hourglassFile)
     if (hourglassTemplate == null) throw new Error(`no template for ${hourglassFile}`)
-    const y = -130
+    const y = -120
     if (this.description.time >= 1) {
       const hourglass = hourglassTemplate.element.clone()
       this.element.append(hourglass)
@@ -55,14 +55,15 @@ export class Card extends Part {
     const group = this.builder.stage.group
     const rank = this.cardInfo.rank
     const centerX = 50
-    const centerY = 1040
+    const centerY = 1070
     const rankX = 0
-    const rankY = -25
+    const rankY = -30
     const rankTextElement = group.text(centerX + rankX, centerY + rankY, rank)
     rankTextElement.attr({ fontSize: 70 })
     rankTextElement.attr({ textAnchor: 'middle' })
     rankTextElement.attr({ fontFamily: 'sans-serif' })
     rankTextElement.attr({ fontWeight: 'bold' })
+    if (this.description.color === 'Red') rankTextElement.attr({ fill: 'white' })
     this.element.add(rankTextElement)
   }
 
@@ -74,10 +75,11 @@ export class Card extends Part {
     this.element.append(icon)
     icon.node.style.display = 'block'
     const scale = 0.15
-    const centerX = 0.5 * scale * icon.getBBox().width
+    const centerX = 0.5 * scale * 512
+    const y = 1070
     icon.transform(`scale(${scale})${icon.transform().local}`)
     icon.transform(`t${-centerX},0${icon.transform().local}`)
-    icon.transform(`t50,1020${icon.transform().local}`)
+    icon.transform(`t50,${y}${icon.transform().local}`)
   }
 
   getCardInfo (): CardInfo {

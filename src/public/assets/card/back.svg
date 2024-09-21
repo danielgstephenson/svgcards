@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
-   width="1.5555555in"
-   height="2.3333333in"
-   viewBox="0 0 139.99999 209.99999"
+   width="1.5555556in"
+   height="3.1249995in"
+   viewBox="0 0 140 281.24995"
    id="svg2"
    version="1.1"
-   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   inkscape:version="1.1.2 (b8e25be833, 2022-02-05)"
    sodipodi:docname="back.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -23,19 +23,19 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="3.7857136"
-     inkscape:cx="65.37737"
-     inkscape:cy="112.00002"
+     inkscape:zoom="0.9464284"
+     inkscape:cx="-219.24532"
+     inkscape:cy="174.33965"
      inkscape:document-units="in"
-     inkscape:current-layer="text12324"
+     inkscape:current-layer="g20"
      showgrid="true"
      units="in"
      inkscape:showpageshadow="false"
      showguides="false"
      inkscape:window-width="1920"
-     inkscape:window-height="1031"
-     inkscape:window-x="1920"
-     inkscape:window-y="24"
+     inkscape:window-height="1009"
+     inkscape:window-x="1912"
+     inkscape:window-y="-12"
      inkscape:window-maximized="1"
      objecttolerance="10000"
      inkscape:snap-bbox="true"
@@ -65,35 +65,17 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(20.000001,-897.36217)">
+     transform="translate(20.000006,-897.36219)">
     <g
        id="g20"
        transform="matrix(0.7,0,0,0.7,15,300.70865)">
       <rect
-         y="858.47925"
-         x="-43.882931"
-         height="287.76584"
-         width="187.76584"
+         y="859.42615"
+         x="-42.936058"
+         height="387.65775"
+         width="185.8721"
          id="rect4175"
-         style="opacity:1;fill:#0000ff;fill-opacity:1;stroke:#0000ff;stroke-width:12.2342;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-      <g
-         aria-label="CITY"
-         transform="rotate(90)"
-         id="text12324"
-         style="font-weight:bold;font-size:88.4454px;line-height:1.25;-inkscape-font-specification:'sans-serif, Bold';fill:#ffffff;stroke-width:2.21114">
-        <path
-           d="m 947.88273,-21.345926 q -4.57774,2.375243 -9.54416,3.584457 -4.96641,1.209215 -10.36469,1.209215 -16.10846,0 -25.52306,-8.982736 -9.4146,-9.025922 -9.4146,-24.443405 0,-15.46067 9.4146,-24.443406 9.4146,-9.025922 25.52306,-9.025922 5.39828,0 10.36469,1.209215 4.96642,1.209214 9.54416,3.584457 v 13.344544 q -4.62093,-3.152594 -9.11229,-4.620926 -4.49137,-1.468332 -9.45779,-1.468332 -8.89636,0 -13.99234,5.700582 -5.09597,5.700582 -5.09597,15.719788 0,9.976018 5.09597,15.676601 5.09598,5.700582 13.99234,5.700582 4.96642,0 9.45779,-1.468332 4.49136,-1.468332 9.11229,-4.620927 z"
-           id="path12347" />
-        <path
-           d="m 961.65914,-82.281695 h 16.6267 v 64.47704 h -16.6267 z"
-           id="path12349" />
-        <path
-           d="m 986.8799,-82.281695 h 59.4242 v 12.567193 h -21.3771 v 51.909847 h -16.6267 v -51.909847 h -21.4204 z"
-           id="path12351" />
-        <path
-           d="m 1045.9155,-82.281695 h 18.1814 l 14.6833,22.975074 14.6833,-22.975074 h 18.2246 l -24.573,37.312902 v 27.164138 h -16.6267 v -27.164138 z"
-           id="path12353" />
-      </g>
+         style="opacity:1;fill:#0000ff;fill-opacity:1;stroke:#0000ff;stroke-width:14.1279;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     </g>
   </g>
 </svg>
