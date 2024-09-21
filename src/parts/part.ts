@@ -53,23 +53,50 @@ export class Part {
   onDragStart (x: number, y: number, event: MouseEvent): void {
     this.onClick(event)
     if (this.mobile && event.button === 0) {
+      this.originalTransform = this.element.transform().local
       this.dragging = true
       this.moved = true
-      this.originalTransform = this.element.transform().local
       this.bringToTop()
+      this.stage.selected.forEach(part => {
+        part.originalTransform = part.element.transform().local
+        part.moved = true
+        part.bringToTop()
+      })
+    }
+  }
+
+  onClick (event: MouseEvent): void {
+    if (event.ctrlKey || event.button === 1 || this.type === 'screen') {
+      this.flip()
+    }
+    if (event.button === 2 || event.shiftKey) {
+      this.select()
+    }
+    this.stage.multiSelect = this.stage.selected.includes(this)
+  }
+
+  select (): void {
+    if (this.selected !== undefined) {
+      this.selected.node.style.display = 'block'
+      this.stage.selected.push(this)
     }
   }
 
   onDragMove (dx: number, dy: number, x: number, y: number, event: MouseEvent): void {
     if (this.mobile && event.button === 0 && this.dragging) {
-      this.moved = true
-      const globalToLocalMatrix = this.element.transform().diffMatrix.invert()
-      globalToLocalMatrix.e = 0 // set translation in the x-direction to zero
-      globalToLocalMatrix.f = 0 // set translation in the y-direction to zero
-      const tdx = globalToLocalMatrix.x(dx, dy) // the tranformed dx
-      const tdy = globalToLocalMatrix.y(dx, dy) // the transformd dy
-      this.element.transform(`t${tdx},${tdy}${this.originalTransform}`)
+      this.mouseTranslate(dx, dy)
+      this.stage.selected.forEach(part => part.mouseTranslate(dx, dy))
     }
+  }
+
+  mouseTranslate (dx: number, dy: number): void {
+    const globalToLocalMatrix = this.element.transform().diffMatrix.invert()
+    globalToLocalMatrix.e = 0 // set translation in the x-direction to zero
+    globalToLocalMatrix.f = 0 // set translation in the y-direction to zero
+    const tdx = globalToLocalMatrix.x(dx, dy) // the tranformed dx
+    const tdy = globalToLocalMatrix.y(dx, dy) // the transformd dy
+    this.element.transform(`t${tdx},${tdy}${this.originalTransform}`)
+    this.moved = true
   }
 
   onDragEnd (event: MouseEvent): void {
@@ -82,14 +109,7 @@ export class Part {
   setupFront (): void {}
 
   addSides (): void {
-    if (this.type === 'card') {
-      this.hiddenFile = 'card/hidden'
-      this.backFile = 'card/back'
-    }
-    if (this.type === 'screen') {
-      this.hiddenFile = 'board/screen-hidden'
-      this.backFile = 'board/screen-back'
-    }
+    this.setupSideFiles()
     if (this.hiddenFile !== undefined) {
       const hiddenTempate = this.builder.templates.get(this.hiddenFile)
       if (hiddenTempate == null) throw new Error(`missing template ${this.hiddenFile}`)
@@ -106,11 +126,32 @@ export class Part {
       this.back.node.style.display = 'none'
       this.back.transform('')
     }
+    if (this.selectedFile !== undefined) {
+      const selectedTemplate = this.builder.templates.get(this.selectedFile)
+      if (selectedTemplate == null) throw new Error(`missing template ${this.selectedFile}`)
+      this.selected = selectedTemplate.element.clone()
+      this.element.append(this.selected)
+      this.selected.node.style.display = 'none'
+      this.selected.transform('')
+    }
   }
 
-  onClick (event: MouseEvent): void {
-    if (event.ctrlKey || event.button === 1 || this.type === 'screen') {
-      this.flip()
+  setupSideFiles (): void {
+    if (this.type === 'card') {
+      this.hiddenFile = 'card/hidden'
+      this.backFile = 'card/back'
+      this.selectedFile = 'card/selected'
+    }
+    if (this.type === 'screen') {
+      this.hiddenFile = 'board/screen-hidden'
+      this.backFile = 'board/screen-back'
+    }
+    if (this.type === 'bit') {
+      if (this.file === 'gold/1') {
+        this.selectedFile = 'gold/selected'
+      } else {
+        this.selectedFile = 'gold/dollarSelected'
+      }
     }
   }
 

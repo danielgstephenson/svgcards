@@ -38,11 +38,14 @@ export class Builder {
       })
     })
     console.log('build')
-    this.loadingDiv.style.display = 'none'
     this.stage.setupMessage.updates.forEach(update => {
-      this.stage.client.updatePart(update, 10)
+      this.stage.client.updatePart(update)
     })
     this.stage.buildComplete = true
+    setTimeout(() => {
+      this.loadingDiv.style.display = 'none'
+      this.stage.moveTime = 300
+    }, 300)
   }
 
   buildPart (description: Description): Part {

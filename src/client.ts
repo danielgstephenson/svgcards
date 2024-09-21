@@ -42,7 +42,7 @@ export class Client {
     }
   }
 
-  updatePart (update: Update, moveTime = 300): void {
+  updatePart (update: Update): void {
     if (update == null) return
     if (this.stage?.buildComplete !== true) return
     if (update.socketId === this.stage.socketId) return
@@ -50,7 +50,7 @@ export class Client {
     const side = update.side === 'hidden' ? 'back' : update.side
     part.setSide(side)
     part.element.stop()
-    part.element.animate({ transform: update.local }, moveTime)
+    part.element.animate({ transform: update.local }, this.stage.moveTime)
     if (part instanceof NameTag) part.updateText(update.text)
     part.bringToTop()
   }

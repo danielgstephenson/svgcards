@@ -18,7 +18,11 @@ export class Stage {
   scribe: Scribe
   builder: Builder
   buildComplete = false
+  multiSelect = false
+  multiDrag = false
+  selected: Part[] = []
   parts: Part[] = []
+  moveTime = 1
 
   constructor (client: Client, setupMessage: SetupMessage) {
     this.client = client
@@ -40,8 +44,9 @@ export class Stage {
     })
     this.paper.mousedown(event => {
       if (event.button === 2) this.paper.zpd({ pan: true })
+      if (event.button === 0 && !this.multiSelect) this.deselect()
+      this.multiSelect = false
     })
-
     this.paper.mouseup(event => {
       if (event.button === 2) this.paper.zpd({ pan: false })
     })
@@ -52,5 +57,14 @@ export class Stage {
       .map(item => ({ value: item, priority: this.rand.next() }))
       .sort((a, b) => a.priority - b.priority)
       .map(x => x.value)
+  }
+
+  deselect (): void {
+    this.selected.forEach(part => {
+      if (part.selected !== undefined) {
+        part.selected.node.style.display = 'none'
+      }
+      this.selected = []
+    })
   }
 }
