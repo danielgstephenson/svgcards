@@ -17,7 +17,7 @@ export class Builder {
 
   colors = new Map<string, string>([
     ['Blue', '#68c3ffff'],
-    ['Red', '#ff9797ff'],
+    ['Red', '#c00000ff'],
     ['Green', '#8fff8eff'],
     ['Purple', '#da97ffff'],
     ['Yellow', '#ffffa3ff'],

@@ -4,7 +4,7 @@
    version="1.1"
    id="svg4"
    sodipodi:docname="TbCrossOff.svg"
-   inkscape:version="1.1.2 (b8e25be833, 2022-02-05)"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
    width="512"
    height="512"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
@@ -23,19 +23,21 @@
      inkscape:pagecheckerboard="0"
      showgrid="false"
      inkscape:zoom="0.80371095"
-     inkscape:cx="434.85783"
+     inkscape:cx="198.45443"
      inkscape:cy="301.10328"
      inkscape:window-width="1920"
-     inkscape:window-height="1009"
-     inkscape:window-x="1912"
-     inkscape:window-y="-12"
+     inkscape:window-height="1008"
+     inkscape:window-x="1920"
+     inkscape:window-y="35"
      inkscape:window-maximized="1"
      inkscape:current-layer="g1095"
      inkscape:snap-page="true"
      fit-margin-top="0"
      fit-margin-left="0"
      fit-margin-right="0"
-     fit-margin-bottom="0" />
+     fit-margin-bottom="0"
+     inkscape:showpageshadow="2"
+     inkscape:deskcolor="#d1d1d1" />
   <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
   <g
      id="g854">
@@ -50,11 +52,11 @@
       <path
          d="m 16,12 h 3 V 8 H 14 V 3 H 10 V 6 M 8,8 H 5 v 4 h 5 v 9 h 4 v -7"
          id="path4"
-         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:1.87500003;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+         style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:1.87500003;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
       <path
          d="M 3,3 21,21"
          id="path6"
-         style="stroke:#000000;stroke-width:2.00001566;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+         style="stroke:#ffffff;stroke-width:2.00001566;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     </g>
   </g>
 </svg>

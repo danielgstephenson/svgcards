@@ -2,6 +2,7 @@ import { CardInfo } from '../cardInfo'
 import { Builder } from '../stage/builder'
 import { Description } from '../stage/scribe'
 import { Part } from './part'
+import { Template } from './template'
 
 export class Card extends Part {
   cardInfo: CardInfo
@@ -27,29 +28,25 @@ export class Card extends Part {
   }
 
   addTime (): void {
-    const hourglassFile = 'card/hourglass'
-    const hourglassTemplate = this.builder.templates.get(hourglassFile)
-    if (hourglassTemplate == null) throw new Error(`no template for ${hourglassFile}`)
-    const hourglassWhiteFile = 'card/hourglass-white'
-    const hourglassWhiteTemplate = this.builder.templates.get(hourglassWhiteFile)
-    if (hourglassWhiteTemplate == null) throw new Error(`no template for ${hourglassWhiteFile}`)
+    const red = this.description.color === 'Red'
+    const path = red ? 'card/hourglass-white' : 'card/hourglass'
+    const template = this.builder.templates.get(path)
+    if (template == null) throw new Error(`No template for ${path}`)
     const y = -120
     if (this.description.time >= 1) {
-      const red = this.description.color === 'Red'
-      const template = red ? hourglassWhiteTemplate : hourglassTemplate
       const hourglass = template.element.clone()
       this.element.append(hourglass)
       hourglass.node.style.display = 'block'
       hourglass.transform(`t0,${y}`)
     }
     if (this.description.time >= 2) {
-      const hourglass = hourglassTemplate.element.clone()
+      const hourglass = template.element.clone()
       this.element.append(hourglass)
       hourglass.node.style.display = 'block'
       hourglass.transform(`t35,${y}`)
     }
     if (this.description.time >= 3) {
-      const hourglass = hourglassTemplate.element.clone()
+      const hourglass = template.element.clone()
       this.element.append(hourglass)
       hourglass.node.style.display = 'block'
       hourglass.transform(`t70,${y}`)
@@ -89,5 +86,11 @@ export class Card extends Part {
 
   getCardInfo (): CardInfo {
     return this.builder.stage.setupMessage.cards[this.description.cardId]
+  }
+
+  getTemplate (path: string): Template {
+    const template = this.builder.templates.get(path)
+    if (template == null) throw new Error(`No template for ${path}`)
+    return template
   }
 }
