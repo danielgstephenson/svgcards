@@ -6,6 +6,7 @@ import { range, unique } from '../math'
 import { Part } from '../parts/part'
 import { Card } from '../parts/card'
 import { NameTag } from '../parts/nametag'
+import { Screen } from '../parts/screen'
 
 export class Builder {
   stage: Stage
@@ -54,6 +55,9 @@ export class Builder {
     }
     if (description.file === 'board/nametag') {
       return new NameTag(this, description)
+    }
+    if (description.file === 'board/screen') {
+      return new Screen(this, description)
     }
     return new Part(this, description)
   }
