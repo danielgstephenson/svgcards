@@ -8,9 +8,14 @@ export class Card extends Part {
 
   constructor (builder: Builder, description: Description) {
     super(builder, description)
-    this.cardInfo = this.builder.stage.setupMessage.cards[this.description.cardId]
+    this.cardInfo = this.getCardInfo()
     this.addColor()
-    this.addRankText()
+  }
+
+  setupFront (): void {
+    this.cardInfo = this.getCardInfo()
+    this.addColor()
+    this.addRank()
   }
 
   addColor (): void {
@@ -19,7 +24,7 @@ export class Card extends Part {
     rectElement.attr({ fill: color })
   }
 
-  addRankText (): void {
+  addRank (): void {
     const group = this.builder.stage.group
     const rank = this.cardInfo.rank
     const rankX = 50
@@ -30,5 +35,9 @@ export class Card extends Part {
     rankTextElement.attr({ fontFamily: 'sans-serif' })
     rankTextElement.attr({ fontWeight: 'bold' })
     this.element.add(rankTextElement)
+  }
+
+  getCardInfo (): CardInfo {
+    return this.builder.stage.setupMessage.cards[this.description.cardId]
   }
 }

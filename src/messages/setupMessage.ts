@@ -1,13 +1,13 @@
 import { CardInfo } from '../cardInfo'
 import { Server } from '../server'
+import { Update } from './update'
 
 export class SetupMessage {
   seed: string
   socketId: string
   playerCount: PlayerCount
-  state = []
-  layers = []
   cards: CardInfo[]
+  updates: Update[]
 
   constructor (server: Server, socketId: string) {
     if (server.cards == null) {
@@ -17,6 +17,7 @@ export class SetupMessage {
     this.seed = server.seed
     this.socketId = socketId
     this.playerCount = server.config.playerCount
+    this.updates = server.updates
   }
 }
 

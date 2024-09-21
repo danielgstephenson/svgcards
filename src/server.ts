@@ -9,6 +9,7 @@ import { SetupMessage } from './messages/setupMessage'
 import { CardInfo, readCards } from './cardInfo'
 import { ClientMessage } from './messages/clientMessage'
 import { Update } from './messages/update'
+import { ServerMessage } from './messages/serverMessage'
 
 export class Server {
   seed = Math.random().toString()
@@ -18,7 +19,7 @@ export class Server {
   httpServer: https.Server | http.Server
   io: SocketIoServer
   cards?: CardInfo[]
-  state: Update[] = []
+  updates: Update[] = []
 
   constructor () {
     this.setupApp()
@@ -35,14 +36,20 @@ export class Server {
     this.io.on('connection', async socket => {
       console.log('connected:', socket.id)
       socket.emit('setup', new SetupMessage(this, socket.id))
-      socket.on('clientUpdateServer', (message: ClientMessage) => {
+      socket.on('clientUpdate', (message: ClientMessage) => {
         if (message.seed === this.seed) {
           message.updates.forEach(update => {
-            this.state[update.index] = update
+            this.updates[update.index] = update
           })
         }
       })
     })
+    setInterval(() => this.updateClients(), 100)
+  }
+
+  updateClients (): void {
+    const message = new ServerMessage(this)
+    this.io.emit('serverUpdate', message)
   }
 
   setupApp (): void {

@@ -46,6 +46,7 @@ export class Part {
     this.element.drag(this.onDragMove, this.onDragStart, this.onDragEnd, this, this, this)
     this.index = this.stage.parts.length
     this.stage.parts.push(this)
+    this.setupFront()
     this.addSides()
   }
 
@@ -77,6 +78,8 @@ export class Part {
       this.moved = true
     }
   }
+
+  setupFront (): void {}
 
   addSides (): void {
     if (this.type === 'card') {
@@ -118,13 +121,13 @@ export class Part {
     if (oldSide === 'back') this.setSide('front')
     if (oldSide === 'hidden') this.setSide('front')
     if (oldSide === 'front') this.setSide('hidden')
+    this.moved = true
   }
 
-  setSide (side: 'hidden' | 'back' | 'front'): void {
+  setSide (side: string): void {
     if (this.hidden === undefined) return
     if (this.back === undefined) return
     this.side = side
-    this.moved = true
     if (side === 'hidden') {
       this.hidden.node.style.display = 'block'
       this.back.node.style.display = 'none'

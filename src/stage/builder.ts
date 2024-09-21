@@ -38,6 +38,9 @@ export class Builder {
     })
     console.log('build')
     this.loadingDiv.style.display = 'none'
+    this.stage.setupMessage.updates.forEach(update => {
+      this.stage.client.processUpdate(update, 10)
+    })
     this.stage.buildComplete = true
   }
 
