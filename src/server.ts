@@ -25,7 +25,7 @@ export class Server {
     this.setupApp()
     this.httpServer = this.getHttpServer()
     this.io = new SocketIo.Server(this.httpServer)
-    this.start().catch(() => { throw new Error('Server start promise rejected') })
+    void this.start()
   }
 
   async start (): Promise<void> {

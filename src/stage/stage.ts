@@ -20,8 +20,10 @@ export class Stage {
   buildComplete = false
   multiSelect = false
   multiDrag = false
+  mouseOver: Part[] = []
   selected: Part[] = []
   parts: Part[] = []
+  stacksOver: Part[] = []
   moveTime = 1
 
   constructor (client: Client, setupMessage: SetupMessage) {
@@ -50,6 +52,15 @@ export class Stage {
     this.paper.mouseup(event => {
       if (event.button === 2) this.paper.zpd({ pan: false })
     })
+    document.addEventListener('keydown', (event) => {
+      // keyboard.set(event.key, true)
+      // keyboardPan()
+      // keyboardZoom()
+      // handleResetZoom()
+      const n = Number(event.key) === 0 ? 10 : Number(event.key)
+      if (isNaN(n)) return false
+      if (n > 0) this.drawFromStack(n)
+    })
   }
 
   shuffle <T> (array: T[]): T[] {
@@ -66,5 +77,25 @@ export class Stage {
       }
       this.selected = []
     })
+  }
+
+  drawFromStack (n: number): void {
+    if (this.mouseOver.length > 0) {
+      const part = this.mouseOver[0]
+      const origin = part.element.transform().string
+      const stack = part.getStack()
+      const draw = stack.slice(0, n)
+      draw.forEach((drawPart, i) => {
+        const x = 0
+        const count = draw.length - i
+        const yBase = 10 * (draw.length - 2)
+        const yDown = 50 * count
+        const y = -yBase + yDown
+        drawPart.element.transform(`${origin}t${x},${y}`)
+        drawPart.bringToTop()
+        drawPart.select()
+        drawPart.moved = true
+      })
+    }
   }
 }

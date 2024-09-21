@@ -2,6 +2,7 @@ import Snap from 'snapsvg-cjs-ts'
 import { Builder } from '../stage/builder'
 import { Description } from '../stage/scribe'
 import { Stage } from '../stage/stage'
+import { intersect } from '../snap/snaputils'
 
 export class Part {
   builder: Builder
@@ -44,10 +45,28 @@ export class Part {
     this.originalTransform = this.element.transform().local
     this.element.data('part', this)
     this.element.drag(this.onDragMove, this.onDragStart, this.onDragEnd, this, this, this)
+    this.element.mouseover(event => {
+      this.stage.mouseOver.push(this)
+    })
+    this.element.mouseout(event => {
+      this.stage.mouseOver = this.stage.mouseOver.filter(part => part !== this)
+    })
     this.index = this.stage.parts.length
     this.stage.parts.push(this)
     this.setupFront()
     this.addSides()
+  }
+
+  getStack (): Part[] {
+    const elements = this.stage.group.children()
+    const parts: Part[] = []
+    elements.forEach(element => {
+      const part = element.data('part')
+      if (part instanceof Part) parts.push(part)
+    })
+    const mobileParts = parts.filter(part => part.mobile)
+    const overlapMobileParts = mobileParts.filter(part => intersect(part.element, this.element))
+    return overlapMobileParts
   }
 
   onDragStart (x: number, y: number, event: MouseEvent): void {
