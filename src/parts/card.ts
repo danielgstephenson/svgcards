@@ -30,9 +30,14 @@ export class Card extends Part {
     const hourglassFile = 'card/hourglass'
     const hourglassTemplate = this.builder.templates.get(hourglassFile)
     if (hourglassTemplate == null) throw new Error(`no template for ${hourglassFile}`)
+    const hourglassWhiteFile = 'card/hourglass-white'
+    const hourglassWhiteTemplate = this.builder.templates.get(hourglassWhiteFile)
+    if (hourglassWhiteTemplate == null) throw new Error(`no template for ${hourglassWhiteFile}`)
     const y = -120
     if (this.description.time >= 1) {
-      const hourglass = hourglassTemplate.element.clone()
+      const red = this.description.color === 'Red'
+      const template = red ? hourglassWhiteTemplate : hourglassTemplate
+      const hourglass = template.element.clone()
       this.element.append(hourglass)
       hourglass.node.style.display = 'block'
       hourglass.transform(`t0,${y}`)
