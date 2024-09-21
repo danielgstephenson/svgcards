@@ -59,7 +59,7 @@ h2, h3 {
   overflow: hidden;
 }
 
-#detailBox {
+#detailDiv {
   color: black;
   height: 36vh; 
   border: 5px solid black; 

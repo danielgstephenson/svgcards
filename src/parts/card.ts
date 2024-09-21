@@ -75,7 +75,6 @@ export class Card extends Part {
     icon.node.style.display = 'block'
     const scale = 0.15
     const centerX = 0.5 * scale * icon.getBBox().width
-    console.log(iconFile, centerX)
     icon.transform(`scale(${scale})${icon.transform().local}`)
     icon.transform(`t${-centerX},0${icon.transform().local}`)
     icon.transform(`t50,1020${icon.transform().local}`)

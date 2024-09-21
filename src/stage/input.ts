@@ -1,6 +1,7 @@
 import Snap from 'snapsvg-cjs-ts'
 import { Part } from '../parts/part'
 import { Stage } from './stage'
+import { Card } from '../parts/card'
 
 export class Input {
   stage: Stage
@@ -10,11 +11,13 @@ export class Input {
   keyboard = new Map<string, boolean>()
   mouseOverParts: Part[] = []
   selectedParts: Part[] = []
+  detailDiv: HTMLDivElement
 
   constructor (stage: Stage) {
     this.stage = stage
     this.paper = stage.paper
     this.paper.zpd({ zoom: true, pan: false, drag: false })
+    this.detailDiv = document.getElementById('detailDiv') as HTMLDivElement
     const width = document.documentElement.clientWidth
     const height = document.documentElement.clientHeight
     const sideBarShare = 0.29
@@ -90,6 +93,9 @@ export class Input {
 
   mouseover (event: MouseEvent, part: Part): void {
     this.mouseOverParts.push(part)
+    if (part instanceof Card) {
+      this.detailDiv.innerHTML = part.description.details
+    }
   }
 
   mouseout (event: MouseEvent, part: Part): void {
