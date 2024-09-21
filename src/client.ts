@@ -4,6 +4,7 @@ import { Stage } from './stage/stage'
 import { ClientMessage } from './messages/clientMessage'
 import { Update } from './messages/update'
 import { ServerMessage } from './messages/serverMessage'
+import { NameTag } from './parts/nametag'
 
 export class Client {
   socket = io()
@@ -26,7 +27,7 @@ export class Client {
     })
     this.socket.on('serverUpdate', (message: ServerMessage) => {
       if (this.seed === message.seed) {
-        message.updates.forEach(update => this.processUpdate(update))
+        message.updates.forEach(update => this.updatePart(update))
       } else {
         console.warn('Restart Needed')
       }
@@ -41,7 +42,7 @@ export class Client {
     }
   }
 
-  processUpdate (update: Update, moveTime = 300): void {
+  updatePart (update: Update, moveTime = 300): void {
     if (update == null) return
     if (this.stage?.buildComplete !== true) return
     if (update.socketId === this.stage.socketId) return
@@ -50,6 +51,7 @@ export class Client {
     part.setSide(side)
     part.element.stop()
     part.element.animate({ transform: update.local }, moveTime)
+    if (part instanceof NameTag) part.updateText(update.text)
     part.bringToTop()
   }
 }

@@ -5,6 +5,7 @@ import { Stage } from './stage'
 import { range, unique } from '../math'
 import { Part } from '../parts/part'
 import { Card } from '../parts/card'
+import { NameTag } from '../parts/nametag'
 
 export class Builder {
   stage: Stage
@@ -39,7 +40,7 @@ export class Builder {
     console.log('build')
     this.loadingDiv.style.display = 'none'
     this.stage.setupMessage.updates.forEach(update => {
-      this.stage.client.processUpdate(update, 10)
+      this.stage.client.updatePart(update, 10)
     })
     this.stage.buildComplete = true
   }
@@ -47,6 +48,9 @@ export class Builder {
   buildPart (description: Description): Part {
     if (description.type === 'card') {
       return new Card(this, description)
+    }
+    if (description.file === 'board/nametag') {
+      return new NameTag(this, description)
     }
     return new Part(this, description)
   }
