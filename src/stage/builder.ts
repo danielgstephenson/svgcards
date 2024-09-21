@@ -60,12 +60,13 @@ export class Builder {
 
   makeTemplates (): void {
     const descriptionFiles = this.descriptions.map(description => description.file)
+    const iconFiles = this.stage.setupMessage.cards.map(cardInfo => `icons/${cardInfo.icon}`)
     const extraFiles = [
       'card/back', 'card/hidden', 'card/facedown', 'card/hourglass', 'card/gold',
       'board/screen-back', 'board/screen-hidden', 'board/screen-facedown',
       'board/ready-back', 'card/pawn', 'card/selected', 'gold/selected', 'gold/dollarSelected'
     ]
-    const files = unique([...descriptionFiles, ...extraFiles])
+    const files = unique([...descriptionFiles, ...iconFiles, ...extraFiles])
     files.forEach(file => {
       const path = `assets/${file}.svg`
       Snap.load(path, (fragment: Snap.Fragment) => {

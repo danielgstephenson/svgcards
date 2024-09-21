@@ -12,6 +12,7 @@ export class Deal {
     const setupMessage = stage.setupMessage
     const playerCount = stage.setupMessage.playerCount
     const cards = setupMessage.cards
+    console.log('cards', cards)
     const ids = [...cards.keys()]
     const shuffleable = ids.filter(i => i !== 5 && i !== 1)
     const shuffled = stage.shuffle(shuffleable)

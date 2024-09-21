@@ -3,10 +3,12 @@ import { Builder } from '../stage/builder'
 import { Description } from '../stage/scribe'
 import { Stage } from '../stage/stage'
 import { intersect } from '../snap/snaputils'
+import { Input } from '../stage/input'
 
 export class Part {
   builder: Builder
   stage: Stage
+  input: Input
   description: Description
   type: string
   file: string
@@ -29,6 +31,7 @@ export class Part {
   constructor (builder: Builder, description: Description) {
     this.builder = builder
     this.stage = this.builder.stage
+    this.input = this.stage.input
     this.description = description
     this.type = this.description.type
     this.file = this.description.file
@@ -45,12 +48,8 @@ export class Part {
     this.originalTransform = this.element.transform().local
     this.element.data('part', this)
     this.element.drag(this.onDragMove, this.onDragStart, this.onDragEnd, this, this, this)
-    this.element.mouseover(event => {
-      this.stage.mouseOver.push(this)
-    })
-    this.element.mouseout(event => {
-      this.stage.mouseOver = this.stage.mouseOver.filter(part => part !== this)
-    })
+    this.element.mouseover(event => this.input.mouseover(event, this))
+    this.element.mouseout(event => this.input.mouseout(event, this))
     this.index = this.stage.parts.length
     this.stage.parts.push(this)
     this.setupFront()
@@ -76,7 +75,7 @@ export class Part {
       this.dragging = true
       this.moved = true
       this.bringToTop()
-      this.stage.selected.forEach(part => {
+      this.input.selectedParts.forEach(part => {
         part.originalTransform = part.element.transform().local
         part.moved = true
         part.bringToTop()
@@ -91,20 +90,20 @@ export class Part {
     if (event.button === 2 || event.shiftKey) {
       this.select()
     }
-    this.stage.multiSelect = this.stage.selected.includes(this)
+    this.input.multiSelect = this.input.selectedParts.includes(this)
   }
 
   select (): void {
     if (this.selected !== undefined) {
       this.selected.node.style.display = 'block'
-      this.stage.selected.push(this)
+      this.input.selectedParts.push(this)
     }
   }
 
   onDragMove (dx: number, dy: number, x: number, y: number, event: MouseEvent): void {
     if (this.mobile && event.button === 0 && this.dragging) {
       this.mouseTranslate(dx, dy)
-      this.stage.selected.forEach(part => part.mouseTranslate(dx, dy))
+      this.input.selectedParts.forEach(part => part.mouseTranslate(dx, dy))
     }
   }
 
