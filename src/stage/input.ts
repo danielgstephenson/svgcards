@@ -97,9 +97,7 @@ export class Input {
       const color = this.stage.builder.colors.get(part.description.color)
       if (color === undefined) throw new Error(`Missing color ${part.description.color}`)
       const a = this.detailDiv.innerHTML.replace(/\s+/g, '')
-      console.log('a', a)
       const b = part.description.details.replace(/\s+/g, '')
-      console.log('b', b)
       const aLetters = a.split('')
       const bLetters = b.split('')
       const same = bLetters.every((bLetter, i) => {
@@ -109,7 +107,6 @@ export class Input {
         return false
       })
       if (same) return
-      console.log('different')
       this.detailDiv.innerHTML = part.description.details
       this.detailDiv.style.backgroundColor = color
       const redColor = this.stage.builder.colors.get('Red')

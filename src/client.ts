@@ -11,8 +11,13 @@ export class Client {
   setupMessage?: SetupMessage
   stage?: Stage
   seed?: string
+  syncingContainer: HTMLElement
+  syncingCount: HTMLElement
+  step = 0
 
   constructor () {
+    this.syncingContainer = this.getElementById('syncing-container')
+    this.syncingCount = this.getElementById('syncing-count')
     this.socket.on('connected', () => {
       console.log('connected')
     })
@@ -27,12 +32,26 @@ export class Client {
     })
     this.socket.on('serverUpdate', (message: ServerMessage) => {
       if (this.seed === message.seed) {
+        console.log('message.updates.length', message.updates.length)
+        const syncing = message.updates.length > 15
+        this.syncingContainer.style.display = syncing ? 'block' : 'none'
+        this.syncingCount.innerText = String(message.updates.length)
         message.updates.forEach(update => this.updatePart(update))
+        this.step = message.step
       } else {
         console.warn('Restart Needed')
       }
     })
     setInterval(() => this.updateServer(), 100)
+  }
+
+  getElementById (id: string): HTMLElement {
+    const element = document.getElementById(id)
+    if (!(element instanceof HTMLElement)) {
+      const message = `There is no #${id}`
+      throw new Error(message)
+    }
+    return element
   }
 
   updateServer (): void {
