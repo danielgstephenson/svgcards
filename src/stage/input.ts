@@ -96,6 +96,26 @@ export class Input {
     if (part instanceof Card) {
       const color = this.stage.builder.colors.get(part.description.color)
       if (color === undefined) throw new Error(`Missing color ${part.description.color}`)
+      const a = this.detailDiv.innerHTML.replace(/\s+/g, '')
+      console.log('a', a)
+      const b = part.description.details.replace(/\s+/g, '')
+      console.log('b', b)
+      const aLetters = a.split('')
+      const bLetters = b.split('')
+      const same = bLetters.every((bLetter, i) => {
+        const aLetter = aLetters[i]
+        const same = bLetter === aLetter
+        if (same) return true
+        console.log('differentLetter:', bLetter, aLetter)
+        console.log('differentIndex:', i)
+        const aSegment = a.slice(0, i + 1)
+        const bSegment = b.slice(0, i + 1)
+        console.log('aSegment:', aSegment)
+        console.log('bSegment:', bSegment)
+        return false
+      })
+      if (same) return
+      console.log('different')
       this.detailDiv.innerHTML = part.description.details
       this.detailDiv.style.backgroundColor = color
       const redColor = this.stage.builder.colors.get('Red')

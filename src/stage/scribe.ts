@@ -129,11 +129,16 @@ export class Scribe {
       description.details = `
         <div id="details-container">
           <div id="details-top">
-            <h1>${cardInfo.title}</h1>
-            <h2 style="margin-bottom: 10px;">Rank: ${cardInfo.rank}</h2>
-            Color: ${cardInfo.color}<br>
-            Unrest: ${cardInfo.time}
-            <hr id="details-separator" />
+            <div id="details-head">
+              <div id="details-title">
+                <h1>${cardInfo.title}</h1>
+                <h2 style="margin-bottom: 10px;">Rank: ${cardInfo.rank}</h2>
+                Color: ${cardInfo.color}<br>
+                Unrest: ${cardInfo.time}
+              </div>
+              <img id="details-image" src="/assets/icons/${cardInfo.icon}.svg">
+            </div>
+            <hr id="details-separator">
             <h3 style="margin-bottom: 10px;">Powers</h3>
             <div style="margin-bottom: 15px;">
               ${cardInfo.beginning}
@@ -145,11 +150,11 @@ export class Scribe {
           </div>
           <div id="details-bottom">
             <a class="details-reference" href="${cardInfo.link1}">
-              <img class="details-reference-icon" src="${cardInfo.icon1}" />
+              <img class="details-reference-icon" src="${cardInfo.icon1}">
               <p>${cardInfo.label1}</p>
             </a>
             <a class="details-reference" href="${cardInfo.link2}">
-              <img class="details-reference-icon" src="${cardInfo.icon2}" />
+              <img class="details-reference-icon" src="${cardInfo.icon2}">
               <p>${cardInfo.label2}</p>
             </a>
           </div>
