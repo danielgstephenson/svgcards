@@ -45,7 +45,7 @@ export class Builder {
     this.stage.buildComplete = true
     setTimeout(() => {
       this.loadingDiv.style.display = 'none'
-      this.stage.moveTime = 300
+      this.stage.moveTime = 100
     }, 300)
   }
 

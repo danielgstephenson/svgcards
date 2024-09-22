@@ -4,7 +4,7 @@ import path from 'path'
 export class Config {
   port = 8080
   secure = false
-  playerCount: 2 | 3 | 4 = 2
+  playerCount: 2 | 3 | 4 = 4
 
   constructor () {
     const dirname = path.dirname(__filename)

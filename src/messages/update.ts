@@ -6,6 +6,7 @@ export class Update {
   side = 'front'
   local = ''
   text = ''
+  step = 0
 
   constructor (part: Part) {
     this.socketId = part.stage.socketId

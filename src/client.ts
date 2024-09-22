@@ -11,6 +11,7 @@ export class Client {
   setupMessage?: SetupMessage
   stage?: Stage
   seed?: string
+  step = 0
 
   constructor () {
     this.socket.on('connected', () => {
@@ -27,7 +28,9 @@ export class Client {
     })
     this.socket.on('serverUpdate', (message: ServerMessage) => {
       if (this.seed === message.seed) {
+        console.log('message.updates.length', message.updates.length)
         message.updates.forEach(update => this.updatePart(update))
+        this.step = message.step
       } else {
         console.warn('Restart Needed')
       }
