@@ -98,6 +98,12 @@ export class Input {
       if (color === undefined) throw new Error(`Missing color ${part.description.color}`)
       this.detailDiv.innerHTML = part.description.details
       this.detailDiv.style.backgroundColor = color
+      const redColor = this.stage.builder.colors.get('Red')
+      if (color === redColor) {
+        this.detailDiv.classList.add('red')
+      } else {
+        this.detailDiv.classList.remove('red')
+      }
     }
   }
 

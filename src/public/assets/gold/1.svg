@@ -5,7 +5,7 @@
    viewBox="0 0 120.00008 120.00008"
    id="svg2"
    version="1.1"
-   inkscape:version="1.1.2 (b8e25be833, 2022-02-05)"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
    sodipodi:docname="1.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -24,7 +24,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="3.9041905"
-     inkscape:cx="54.428697"
+     inkscape:cx="-42.646485"
      inkscape:cy="78.377323"
      inkscape:document-units="in"
      inkscape:current-layer="g20"
@@ -33,9 +33,9 @@
      inkscape:showpageshadow="false"
      showguides="false"
      inkscape:window-width="1920"
-     inkscape:window-height="1009"
-     inkscape:window-x="1912"
-     inkscape:window-y="-12"
+     inkscape:window-height="1008"
+     inkscape:window-x="1920"
+     inkscape:window-y="35"
      inkscape:window-maximized="1"
      objecttolerance="10000"
      inkscape:snap-bbox="true"
@@ -71,7 +71,7 @@
        id="g20"
        transform="matrix(0.7,0,0,0.7,15,300.70865)">
       <circle
-         style="fill:#ff0000;stroke:#000000;stroke-width:17.8715;stroke-linecap:round"
+         style="fill:#cccccc;stroke:#000000;stroke-width:17.8715;stroke-linecap:round"
          id="path3295"
          cx="-8.3963528"
          cy="787.5639"
@@ -80,10 +80,10 @@
          aria-label="1"
          transform="matrix(0.82614294,0,0,0.93450476,0.37442149,82.944651)"
          id="text2514"
-         style="font-size:111.668px;line-height:1.25;stroke-width:1.49557">
+         style="font-size:111.668px;line-height:1.25;stroke-width:1.49557;fill:#000000">
         <path
            d="m -12.727051,737.07776 v 54.60565 H 2.9064685 V 712.5108 H -7.4786554 c -2.456696,9.38011 -10.6084596,14.18184 -24.2319556,14.18184 v 10.38512 z"
-           style="font-weight:bold;font-family:FreeSans;-inkscape-font-specification:'FreeSans Bold';fill:#ffffff"
+           style="font-weight:bold;font-family:FreeSans;-inkscape-font-specification:'FreeSans Bold';fill:#000000"
            id="path10754" />
       </g>
     </g>

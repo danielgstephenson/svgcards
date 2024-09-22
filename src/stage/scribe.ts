@@ -73,7 +73,7 @@ export class Scribe {
       const space = 160
       return describe({
         file: 'card/front',
-        x: x - 50 + (i - 3) * space,
+        x: x - 0 + (i - 3) * space,
         y: y - sgn * +25,
         type: 'card',
         cardId: reserveId
@@ -103,24 +103,16 @@ export class Scribe {
       describe({ file: 'gold/10', x: x + 60, y: y + 120, type: 'bit', clones: 30 }),
       describe({ file: 'gold/25', x: x + 260, y: y - 120, type: 'bit', clones: 15 }),
       describe({ file: 'gold/25', x: x + 260, y: y + 120, type: 'bit', clones: 15 }),
-      describe({ file: 'card/front', x: x - 450, y: y - 120, type: 'card', cardId: 1, clones: 50 }),
-      describe({ file: 'card/front', x: x - 450, y: y + 120, type: 'card', cardId: 1, clones: 50 }),
-      describe({ file: 'board/stack1', x: x - 280, y: y - 120, type: 'stack' }),
-      describe({ file: 'board/stack1', x: x - 280, y: y + 120, type: 'stack' }),
-      describe({ file: 'board/stack5', x: x - 120, y: y - 120, type: 'stack' }),
-      describe({ file: 'board/stack5', x: x - 120, y: y + 120, type: 'stack' }),
-      describe({ file: 'board/stack10', x: x + 60, y: y - 120, type: 'stack' }),
-      describe({ file: 'board/stack10', x: x + 60, y: y + 120, type: 'stack' }),
-      describe({ file: 'board/stack25', x: x + 260, y: y - 120, type: 'stack' }),
-      describe({ file: 'board/stack25', x: x + 260, y: y + 120, type: 'stack' })
+      describe({ file: 'card/front', x: x - 450, y: y - 150, type: 'card', cardId: 1, clones: 50 }),
+      describe({ file: 'card/front', x: x - 450, y: y + 150, type: 'card', cardId: 1, clones: 50 })
     ]
   }
 
   describeMarket (x: number, y: number): Description[] {
     return [
       describe({ file: 'board/court', x, y: 0, type: 'board' }),
-      describe({ file: 'card/front', x: x - 250, y: y - 150, type: 'card', cardId: this.deal.market }),
-      describe({ file: 'card/front', x: x - 250, y: y + 150, type: 'card', cardId: this.deal.exile })
+      describe({ file: 'card/front', x: x - 50, y: y - 150, type: 'card', cardId: this.deal.market }),
+      describe({ file: 'card/front', x: x - 50, y: y + 150, type: 'card', cardId: this.deal.exile })
     ]
   }
 
@@ -129,17 +121,39 @@ export class Scribe {
       const cardInfo = this.setupMessage.cards[description.cardId]
       description.time = Number(cardInfo.time)
       description.color = cardInfo.color
-      const bonusText = cardInfo.bonus === '' ? '' : `<strong>Bonus</strong>: ${cardInfo.bonus}<br><br>`
+      const bonus = cardInfo.bonus === ''
+        ? ''
+        : `<div style="padding: 5px; background-color: white; color: black;">
+            <strong>Bonus</strong>: ${cardInfo.bonus}
+          </div>`
       description.details = `
-        <h1>Size: ${cardInfo.rank}</h1>
-        <h2>${cardInfo.title}</h2><br>
-        Color: ${cardInfo.color}<br>
-        Unrest: ${cardInfo.time}<br><br>
-        <hr style="border: 1px solid black; margin-bottom: 10px;"/>
-        <h3>Powers</h3><br>
-        ${cardInfo.beginning}<br><br>
-        ${cardInfo.end}<br><br>
-        ${bonusText}
+        <div id="details-container">
+          <div id="details-top">
+            <h1>${cardInfo.title}</h1>
+            <h2 style="margin-bottom: 10px;">Rank: ${cardInfo.rank}</h2>
+            Color: ${cardInfo.color}<br>
+            Unrest: ${cardInfo.time}
+            <hr id="details-separator" />
+            <h3 style="margin-bottom: 10px;">Powers</h3>
+            <div style="margin-bottom: 15px;">
+              ${cardInfo.beginning}
+            </div>
+            <div style="margin-bottom: 10px;">
+              ${cardInfo.end}
+            </div>
+            ${bonus}
+          </div>
+          <div id="details-bottom">
+            <a class="details-reference" href="${cardInfo.link1}">
+              <img class="details-reference-icon" src="${cardInfo.icon1}" />
+              <p>${cardInfo.label1}</p>
+            </a>
+            <a class="details-reference" href="${cardInfo.link2}">
+              <img class="details-reference-icon" src="${cardInfo.icon2}" />
+              <p>${cardInfo.label2}</p>
+            </a>
+          </div>
+        </div>
       `
     }
   }

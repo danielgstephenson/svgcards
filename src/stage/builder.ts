@@ -17,10 +17,10 @@ export class Builder {
 
   colors = new Map<string, string>([
     ['Blue', '#68c3ffff'],
-    ['Red', '#c00000ff'],
-    ['Green', '#8fff8eff'],
+    ['Red', '#aa0000ff'],
+    ['Green', '#66ff00ff'],
     ['Purple', '#da97ffff'],
-    ['Yellow', '#ffffa3ff'],
+    ['Yellow', '#ffd200ff'],
     ['None', 'white']
   ])
 
@@ -68,7 +68,7 @@ export class Builder {
     const extraFiles = [
       'card/back', 'card/hidden', 'card/hourglass', 'card/hourglass-white',
       'board/screen-back', 'board/screen-hidden', 'card/gold',
-      'board/ready-back', 'card/pawn', 'card/selected', 'gold/selected', 'gold/dollarSelected'
+      'board/ready-back', 'card/pawn', 'card/selected', 'gold/selected'
     ]
     const files = unique([...descriptionFiles, ...iconFiles, ...extraFiles])
     files.forEach(file => {

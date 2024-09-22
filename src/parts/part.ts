@@ -165,11 +165,7 @@ export class Part {
       this.backFile = 'board/screen-back'
     }
     if (this.type === 'bit') {
-      if (this.file === 'gold/1') {
-        this.selectedFile = 'gold/selected'
-      } else {
-        this.selectedFile = 'gold/dollarSelected'
-      }
+      this.selectedFile = 'gold/selected'
     }
   }
 

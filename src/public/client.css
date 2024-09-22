@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: sans;
 }
 
 body {
@@ -50,7 +51,7 @@ h1, h2, h3 {
 #roundStructure {
   font-size: 1.5vh; 
   text-align: left; 
-  height: 49vh;
+  height: 51vh;
   border: 5px solid black;
   border-top: 0px;
   border-bottom: 0px; 
@@ -61,14 +62,19 @@ h1, h2, h3 {
 
 #detailDiv {
   color: black;
-  height: 36vh; 
+  height: 37vh; 
   border: 5px solid black; 
+  padding: 10px;
+}
+
+#detailDiv.red {
+  color: white;
 }
 
 #victoryRules {
   font-size: 1.5vh; 
   text-align: left; 
-  height: 15vh; 
+  height: 12vh; 
   border: 5px solid black; 
   border-top: 0px;
   border-bottom: 0px; 
@@ -91,10 +97,12 @@ h1, h2, h3 {
 
 #titleDiv {
   font-size: 9vh;
+  font-family: serif;
   font-weight: bold;
 }
 
 #loadingTextDiv {
+  font-family: serif;
   font-size: 5vh;
   font-weight: bold;
 }
@@ -105,4 +113,42 @@ h1, h2, h3 {
   font-size: 2.5vh;
   user-select: none;
   color: blue;
+}
+
+#details-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+#details-top {
+  height: 100%
+}
+
+#details-bottom {
+  display: flex;
+}
+
+.details-reference {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  width: 50%;
+}
+
+#detailDiv.red .details-reference {
+  color: white;
+}
+
+.details-reference-icon {
+  height: 15px;
+}
+
+#details-separator {
+  margin: 10px 0;
+  border: 1px solid black;
+}
+
+#detailDiv.red #details-separator {
+  border: 1px solid white;
 }
