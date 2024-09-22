@@ -12,7 +12,7 @@ import { Update } from './messages/update'
 import { ServerMessage } from './messages/serverMessage'
 
 export class Server {
-  seed = '5' // Math.random().toString()
+  seed = Math.random().toString()
   config = new Config()
   dirname = path.dirname(__filename)
   app = express()

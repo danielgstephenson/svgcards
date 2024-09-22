@@ -5,7 +5,7 @@ import { PlayerCount } from './types'
 export class Config {
   port = 8080
   secure = false
-  playerCount: PlayerCount = 5
+  playerCount: PlayerCount = 3
 
   constructor () {
     const dirname = path.dirname(__filename)

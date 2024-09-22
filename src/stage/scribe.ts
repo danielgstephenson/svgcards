@@ -58,7 +58,7 @@ export class Scribe {
     const boards = [
       describe({ file: 'board/screen', x, y: y + sgn * 500, type: 'screen', rotation: angle, player }),
       describe({ file: 'board/nametag', x, y: y + sgn * 750, type: 'board' }),
-      describe({ file: tableauFile, x, y: sgn === 1 ? y - sgn * 250 : y - sgn * 250, type: 'board' })
+      describe({ file: tableauFile, x, y: sgn === 1 ? y - sgn * 240 : y - sgn * 250, type: 'board' })
     ]
     const hand = this.deal.hand.map((handId, i) => {
       const space = 160
@@ -74,7 +74,7 @@ export class Scribe {
       const space = 160
       return describe({
         file: 'card/front',
-        x: x - 0 + (i - 3) * space,
+        x: x + 175 + (i - 3) * space,
         y: y - sgn * +25,
         type: 'card',
         cardId: reserveId
@@ -88,8 +88,8 @@ export class Scribe {
     }
     const goldCount = goldCounts[this.playerCount]
     const gold = [
-      ...describeRow('gold/5', x + 250, y + sgn * 275, 'bit', goldCount.five, 50 * (8 - this.playerCount)),
-      ...describeRow('gold/10', x - 250, y + sgn * 275, 'bit', goldCount.ten, 100)
+      ...describeRow('gold/5', x + 250, y + sgn * 240, 'bit', goldCount.five, 50 * (8 - this.playerCount)),
+      ...describeRow('gold/10', x - 250, y + sgn * 240, 'bit', goldCount.ten, 100)
     ]
     const descriptions = [...boards, ...hand, ...reserve, ...gold]
     return descriptions
@@ -112,8 +112,8 @@ export class Scribe {
 
   describeMarket (x: number, y: number): Description[] {
     return [
-      describe({ file: 'board/court', x, y: 0, type: 'board' }),
-      describe({ file: 'card/front', x: x - 50, y: y - 150, type: 'card', cardId: this.deal.market }),
+      describe({ file: 'board/court', x, y: -20, type: 'board' }),
+      describe({ file: 'card/front', x: x - 50, y: y - 180, type: 'card', cardId: this.deal.market }),
       describe({ file: 'card/front', x: x - 50, y: y + 150, type: 'card', cardId: this.deal.exile })
     ]
   }
@@ -151,11 +151,11 @@ export class Scribe {
             ${bonus}
           </div>
           <div id="details-bottom">
-            <a class="details-reference" href="${cardInfo.link1}">
+            <a class="details-reference" href="${cardInfo.link1}" target="_blank">
               <img class="details-reference-icon" src="${cardInfo.icon1}">
               <p>${cardInfo.label1}</p>
             </a>
-            <a class="details-reference" href="${cardInfo.link2}">
+            <a class="details-reference" href="${cardInfo.link2}" target="_blank">
               <img class="details-reference-icon" src="${cardInfo.icon2}">
               <p>${cardInfo.label2}</p>
             </a>
