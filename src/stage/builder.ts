@@ -73,7 +73,6 @@ export class Builder {
     const files = unique([...descriptionFiles, ...iconFiles, ...extraFiles])
     files.forEach(file => {
       const path = `assets/${file}.svg`
-      console.log('path', path)
       Snap.load(path, (fragment: Snap.Fragment) => {
         const template = new Template(this, fragment)
         this.templates.set(file, template)

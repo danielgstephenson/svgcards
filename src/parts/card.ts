@@ -59,7 +59,7 @@ export class Card extends Part {
     const centerX = 50
     const centerY = 1070
     const rankX = 0
-    const rankY = -30
+    const rankY = -33
     const rankTextElement = group.text(centerX + rankX, centerY + rankY, rank)
     rankTextElement.attr({ fontSize: 70 })
     rankTextElement.attr({ textAnchor: 'middle' })

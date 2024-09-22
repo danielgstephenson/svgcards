@@ -106,12 +106,6 @@ export class Input {
         const aLetter = aLetters[i]
         const same = bLetter === aLetter
         if (same) return true
-        console.log('differentLetter:', bLetter, aLetter)
-        console.log('differentIndex:', i)
-        const aSegment = a.slice(0, i + 1)
-        const bSegment = b.slice(0, i + 1)
-        console.log('aSegment:', aSegment)
-        console.log('bSegment:', bSegment)
         return false
       })
       if (same) return
