@@ -24,7 +24,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="6.5312457"
-     inkscape:cx="59.789513"
+     inkscape:cx="66.756025"
      inkscape:cy="64.000042"
      inkscape:document-units="in"
      inkscape:current-layer="g20"
@@ -70,12 +70,13 @@
     <g
        id="g20"
        transform="matrix(0.7,0,0,0.7,15,300.70865)">
-      <circle
-         style="fill:#ffd200;stroke:#000000;stroke-width:17.8715;stroke-linecap:round;fill-opacity:1"
+      <ellipse
+         style="fill:#ffd200;fill-opacity:1;stroke:#000000;stroke-width:10.7144;stroke-linecap:round;stroke-dasharray:none"
          id="path3295"
-         cx="-8.3963528"
+         cx="-8.396348"
          cy="787.5639"
-         r="76.778587" />
+         rx="80.357201"
+         ry="80.357208" />
       <g
          aria-label="5"
          id="text693"

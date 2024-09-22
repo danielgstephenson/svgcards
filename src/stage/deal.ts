@@ -31,7 +31,8 @@ export class Deal {
     const portfolioCounts = {
       2: { green: 2, red: 3, yellow: 2 },
       3: { green: 2, red: 3, yellow: 3 },
-      4: { green: 3, red: 3, yellow: 3 }
+      4: { green: 3, red: 3, yellow: 3 },
+      5: { green: 3, red: 4, yellow: 3 }
     }
     const portfolioCount = portfolioCounts[playerCount]
     const portfolioGreen = green.slice(0, portfolioCount.green)

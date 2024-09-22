@@ -1,5 +1,6 @@
 import { range } from '../math'
-import { PlayerCount, SetupMessage } from '../messages/setupMessage'
+import { SetupMessage } from '../messages/setupMessage'
+import { PlayerCount } from '../types'
 import { Deal } from './deal'
 import { Stage } from './stage'
 
@@ -55,8 +56,8 @@ export class Scribe {
     const angle = sgn === -1 ? 180 : 0
     const tableauFile = sgn === 1 ? 'board/tableau-bottom' : 'board/tableau-top'
     const boards = [
-      describe({ file: 'board/nametag', x, y: y + sgn * 750, type: 'board' }),
       describe({ file: 'board/screen', x, y: y + sgn * 500, type: 'screen', rotation: angle, player }),
+      describe({ file: 'board/nametag', x, y: y + sgn * 750, type: 'board' }),
       describe({ file: tableauFile, x, y: sgn === 1 ? y - sgn * 250 : y - sgn * 250, type: 'board' })
     ]
     const hand = this.deal.hand.map((handId, i) => {
@@ -82,7 +83,8 @@ export class Scribe {
     const goldCounts = {
       2: { five: 6, ten: 2 },
       3: { five: 4, ten: 2 },
-      4: { five: 2, ten: 2 }
+      4: { five: 2, ten: 2 },
+      5: { five: 2, ten: 1 }
     }
     const goldCount = goldCounts[this.playerCount]
     const gold = [

@@ -1,5 +1,6 @@
 import { CardInfo } from '../cardInfo'
 import { Server } from '../server'
+import { PlayerCount } from '../types'
 import { Update } from './update'
 
 export class SetupMessage {
@@ -20,5 +21,3 @@ export class SetupMessage {
     this.updates = server.updates
   }
 }
-
-export type PlayerCount = 2 | 3 | 4
