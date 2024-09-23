@@ -113,8 +113,8 @@ export class Scribe {
   describeMarket (x: number, y: number): Description[] {
     return [
       describe({ file: 'board/court', x, y: -20, type: 'board' }),
-      describe({ file: 'card/front', x: x - 50, y: y - 180, type: 'card', cardId: this.deal.market }),
-      describe({ file: 'card/front', x: x - 50, y: y + 150, type: 'card', cardId: this.deal.exile })
+      describe({ file: 'card/front', x: x - 0, y: y - 180, type: 'card', cardId: this.deal.market }),
+      describe({ file: 'card/front', x: x - 0, y: y + 150, type: 'card', cardId: this.deal.exile })
     ]
   }
 
