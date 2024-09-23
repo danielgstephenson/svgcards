@@ -43,7 +43,7 @@ export class Server {
       socket.emit('setup', new SetupMessage(this, socket.id))
       socket.on('clientUpdate', (message: ClientMessage) => {
         if (message.seed === this.seed) {
-          user.step = message.step
+          user.ready = true
           message.updates.forEach(update => {
             update.step = this.step
             this.updates[update.index] = update
@@ -59,7 +59,7 @@ export class Server {
     this.users.forEach(user => {
       const message = new ServerMessage(this, user)
       user.socket.emit('serverUpdate', message)
-      user.step = this.step
+      if (user.ready) user.step = this.step
     })
   }
 
