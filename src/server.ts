@@ -59,6 +59,7 @@ export class Server {
     this.users.forEach(user => {
       const message = new ServerMessage(this, user)
       user.socket.emit('serverUpdate', message)
+      user.step = this.step
     })
   }
 

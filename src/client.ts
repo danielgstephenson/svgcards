@@ -40,7 +40,7 @@ export class Client {
         } else {
           this.syncingContainer.classList.add('hidden')
         }
-        message.updates.forEach(update => this.updatePart(update))
+        message.updates.forEach(update => { this.updatePart(update) })
         this.step = message.step
       } else {
         console.warn('Restart Needed')

@@ -13,6 +13,5 @@ export class ServerMessage {
     this.updates = server.updates.filter(update => {
       return update.step >= user.step
     })
-    // console.log([user.step, ...this.updates.map(x => x.step)])
   }
 }
