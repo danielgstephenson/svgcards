@@ -34,8 +34,12 @@ export class Client {
       if (this.seed === message.seed) {
         console.log('message.updates.length', message.updates.length)
         const syncing = message.updates.length > 15
-        this.syncingContainer.style.display = syncing ? 'block' : 'none'
-        this.syncingCount.innerText = String(message.updates.length)
+        if (syncing) {
+          this.syncingCount.innerText = String(message.updates.length)
+          this.syncingContainer.classList.remove('hidden')
+        } else {
+          this.syncingContainer.classList.add('hidden')
+        }
         message.updates.forEach(update => this.updatePart(update))
         this.step = message.step
       } else {

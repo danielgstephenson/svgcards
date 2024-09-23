@@ -136,7 +136,7 @@ export class Scribe {
                 <h1>${cardInfo.title}</h1>
                 <h2 style="margin-bottom: 10px;">Rank: ${cardInfo.rank}</h2>
                 Color: ${cardInfo.color}<br>
-                Unrest: ${cardInfo.time}
+                Eyes: ${cardInfo.time}
               </div>
               <img id="details-image" src="/assets/icons/${cardInfo.icon}.svg">
             </div>

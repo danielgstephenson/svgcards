@@ -164,9 +164,28 @@ h1, h2, h3 {
 }
 
 #syncing-container {
+  align-items: start;
+  background: rgba(255, 255, 255, 0.75);
   display: flex;
   gap: 10px;
+  height: 100vh;
+  justify-content: end;
   position: absolute;
   top: 0;
   right: 0;
+  width: 71vw;
+}
+
+#syncing-count {
+  font-family: serif;
+}
+
+#syncing-label {
+  background: rgba(213, 229, 255, 1);
+  padding: 50px;
+  height: fit-content;
+}
+
+.hidden {
+  display: none !important;
 }
