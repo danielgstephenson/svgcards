@@ -121,31 +121,42 @@ export class Scribe {
   annotate (description: Description): void {
     if (description.type === 'card') {
       const cardInfo = this.setupMessage.cards[description.cardId]
-      description.time = Number(cardInfo.time)
+      const time = Number(cardInfo.time)
+      description.time = time
       description.color = cardInfo.color
-      const bonus = cardInfo.bonus === ''
-        ? ''
-        : `<div style="padding: 5px; background-color: white; color: black;">
+      console.log('cardInfo.color', cardInfo.color)
+      const red = cardInfo.color === 'Red'
+      console.log('red', red)
+      const bonus = red
+        ? `<div style="padding: 5px; background-color: white; color: black;">
             <strong>Bonus</strong>: ${cardInfo.bonus}
           </div>`
+        : ''
+      const timeRange = range(time)
+      const charge = red ? 'hourglass-white' : 'hourglass'
+      const charges = timeRange.map(i => {
+        return `<img class="details-charge" src="/assets/card/${charge}.svg">`
+      })
+      const chargesString = charges.join('')
       description.details = `
         <div id="details-container">
           <div id="details-top">
             <div id="details-head">
               <div id="details-title">
-                <h1>${cardInfo.title}</h1>
-                <h2 style="margin-bottom: 10px;">Rank: ${cardInfo.rank}</h2>
-                Color: ${cardInfo.color}<br>
-                Eyes: ${cardInfo.time}
+                <h1>
+                  <span>${cardInfo.title}<span>${chargesString}
+                </h1>
+                <h2 id="details-rank">Rank: ${cardInfo.rank}</h2>
+                <p>Color: ${cardInfo.color}<p>
               </div>
               <img id="details-image" src="/assets/icons/${cardInfo.icon}.svg">
             </div>
             <hr id="details-separator">
-            <h3 style="margin-bottom: 10px;">Powers</h3>
-            <div style="margin-bottom: 15px;">
+            <h3 id="details-powers">Powers</h3>
+            <div id="details-beginning">
               ${cardInfo.beginning}
             </div>
-            <div style="margin-bottom: 10px;">
+            <div id="details-end">
               ${cardInfo.end}
             </div>
             ${bonus}
