@@ -105,8 +105,8 @@ export class Scribe {
       describe({ file: 'gold/10', x: x + 60, y: y + 120, type: 'bit', clones: 30 }),
       describe({ file: 'gold/25', x: x + 260, y: y - 120, type: 'bit', clones: 15 }),
       describe({ file: 'gold/25', x: x + 260, y: y + 120, type: 'bit', clones: 15 }),
-      describe({ file: 'card/front', x: x - 450, y: y - 150, type: 'card', cardId: 1, clones: 50 }),
-      describe({ file: 'card/front', x: x - 450, y: y + 150, type: 'card', cardId: 1, clones: 50 })
+      describe({ file: 'card/front', x: x - 450, y: y - 150, type: 'card', cardId: 0, clones: 50 }),
+      describe({ file: 'card/front', x: x - 450, y: y + 150, type: 'card', cardId: 0, clones: 50 })
     ]
   }
 
