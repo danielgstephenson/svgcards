@@ -95,7 +95,7 @@ html {
   background: #f7f1f5; 
   color: black;
   border: 0px solid black;
-  width: 29vw; 
+  width: 33vw; 
   height: 100vh; 
   float: left; 
   position: relative;
@@ -217,4 +217,12 @@ svg {
   background: rgba(213, 229, 255, 1);
   padding: 50px;
   height: fit-content;
+}
+
+#structure-end {
+  font-weight: bold;
+}
+
+#structure-bonus {
+  color: red;
 }
