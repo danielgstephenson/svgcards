@@ -16,7 +16,7 @@ export class Deal {
     const ids = [...cards.keys()]
     const shuffleable = ids.filter(i => i !== 4 && i !== 0)
     const shuffled = stage.shuffle(shuffleable)
-    const dealCount = 15 + playerCount
+    const dealCount = 14 + playerCount
     const sliced = shuffled.slice(0, dealCount)
     const sorted = [...sliced].sort((a, b) => a - b)
     const market = sorted.shift()
@@ -44,5 +44,7 @@ export class Deal {
     this.hand = this.portfolio.slice(0, handSize)
     this.reserve = this.portfolio.slice(-handSize)
     this.center = sorted.filter(id => !this.portfolio.includes(id) && this.exile !== id)
+    const remaining = [...cards.keys()].filter(id => !this.portfolio.includes(id) && !this.center.includes(id) && this.exile !== id && this.market !== id && id !== 0).map(id => id + 1)
+    console.log('remaining', remaining)
   }
 }
