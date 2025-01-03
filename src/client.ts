@@ -32,7 +32,6 @@ export class Client {
     })
     this.socket.on('serverUpdate', (message: ServerMessage) => {
       if (this.seed === message.seed) {
-        console.log('message.updates.length', message.updates.length)
         const syncing = message.updates.length > 15
         if (syncing) {
           this.syncingCount.innerText = String(message.updates.length)

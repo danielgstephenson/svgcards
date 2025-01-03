@@ -23,12 +23,12 @@ export class Scribe {
   getDescriptions (): Description[] {
     const numBottomRowPlayers = Math.round(this.playerCount / 2)
     const numTopRowPlayers = this.playerCount - numBottomRowPlayers
-    const topRowOrigins = this.getPortfolioOrigins(numTopRowPlayers, -1050)
-    const bottomRowOrigins = this.getPortfolioOrigins(numBottomRowPlayers, 1050)
+    const topRowOrigins = this.getPortfolioOrigins(numTopRowPlayers, -1200)
+    const bottomRowOrigins = this.getPortfolioOrigins(numBottomRowPlayers, 1200)
     const portfolioOrigins = topRowOrigins.concat(bottomRowOrigins)
     const portfolios = portfolioOrigins.map((origin, i) => this.describePortfolio(origin, i)).flat()
     const bank = this.describeBank(2000, 0)
-    const market = this.describeMarket(-1950, 0)
+    const market = this.describeMarket(0, 0)
     const center = this.describeCenter()
     const descriptions = [...portfolios, ...bank, ...market, ...center]
     descriptions.forEach(description => this.annotate(description))
@@ -41,8 +41,8 @@ export class Scribe {
       const offset = this.deal.center.length / 2 - 0.5
       return describe({
         file: 'card/front',
-        x: 0 + (i - offset) * 150,
-        y: 0,
+        x: 256 + (i - offset) * 165,
+        y: -340,
         type: 'card',
         cardId
       })
@@ -112,9 +112,9 @@ export class Scribe {
 
   describeMarket (x: number, y: number): Description[] {
     return [
-      describe({ file: 'board/court', x, y: -20, type: 'board' }),
-      describe({ file: 'card/front', x: x - 0, y: y - 180, type: 'card', cardId: this.deal.market }),
-      describe({ file: 'card/front', x: x - 0, y: y + 150, type: 'card', cardId: this.deal.exile })
+      describe({ file: 'board/court', x, y, type: 'board' }),
+      describe({ file: 'card/front', x: x - 0, y, type: 'card', cardId: this.deal.market }),
+      describe({ file: 'card/front', x: x - 0, y: y + 330, type: 'card', cardId: this.deal.exile })
     ]
   }
 
@@ -124,9 +124,7 @@ export class Scribe {
       const time = Number(cardInfo.time)
       description.time = time
       description.color = cardInfo.color
-      console.log('cardInfo.color', cardInfo.color)
       const red = cardInfo.color === 'Red'
-      console.log('red', red)
       const bonus = red
         ? `<div style="padding: 5px; background-color: white; color: black;">
             <strong>Bonus</strong>: ${cardInfo.bonus}
