@@ -29,19 +29,18 @@ export class Scribe {
     const portfolios = portfolioOrigins.map((origin, i) => this.describePortfolio(origin, i)).flat()
     const bank = this.describeBank(2000, 0)
     const market = this.describeMarket(0, 0)
-    const center = this.describeCenter()
+    const center = this.describeTimeline()
     const descriptions = [...portfolios, ...bank, ...market, ...center]
     descriptions.forEach(description => this.annotate(description))
     descriptions.sort(compareLayers)
     return descriptions
   }
 
-  describeCenter (): Description[] {
+  describeTimeline (): Description[] {
     return this.deal.center.map((cardId, i) => {
-      const offset = this.deal.center.length / 2 - 0.5
       return describe({
         file: 'card/front',
-        x: 256 + (i - offset) * 165,
+        x: -300 + i * 166,
         y: -340,
         type: 'card',
         cardId
@@ -81,14 +80,14 @@ export class Scribe {
       })
     })
     const goldCounts = {
-      2: { five: 6, ten: 2 },
-      3: { five: 4, ten: 2 },
-      4: { five: 2, ten: 2 },
-      5: { five: 2, ten: 1 }
+      2: { five: 4, ten: 5 },
+      3: { five: 4, ten: 4 },
+      4: { five: 2, ten: 4 },
+      5: { five: 2, ten: 3 }
     }
     const goldCount = goldCounts[this.playerCount]
     const gold = [
-      ...describeRow('gold/5', x + 250, y + sgn * 240, 'bit', goldCount.five, 50 * (8 - this.playerCount)),
+      ...describeRow('gold/5', x + 250, y + sgn * 240, 'bit', goldCount.five, 50), //  * (8 - this.playerCount)),
       ...describeRow('gold/10', x - 250, y + sgn * 240, 'bit', goldCount.ten, 100)
     ]
     const descriptions = [...boards, ...hand, ...reserve, ...gold]
@@ -101,20 +100,31 @@ export class Scribe {
       describe({ file: 'gold/1', x: x - 280, y: y + 120, type: 'bit', clones: 150 }),
       describe({ file: 'gold/5', x: x - 120, y: y - 120, type: 'bit', clones: 35 }),
       describe({ file: 'gold/5', x: x - 120, y: y + 120, type: 'bit', clones: 35 }),
-      describe({ file: 'gold/10', x: x + 60, y: y - 120, type: 'bit', clones: 30 }),
-      describe({ file: 'gold/10', x: x + 60, y: y + 120, type: 'bit', clones: 30 }),
-      describe({ file: 'gold/25', x: x + 260, y: y - 120, type: 'bit', clones: 15 }),
-      describe({ file: 'gold/25', x: x + 260, y: y + 120, type: 'bit', clones: 15 }),
+      describe({ file: 'gold/10', x: x + 40, y: y - 120, type: 'bit', clones: 30 }),
+      describe({ file: 'gold/10', x: x + 40, y: y + 120, type: 'bit', clones: 30 }),
+      describe({ file: 'gold/25', x: x + 200, y: y - 120, type: 'bit', clones: 15 }),
+      describe({ file: 'gold/25', x: x + 200, y: y + 120, type: 'bit', clones: 15 }),
       describe({ file: 'card/front', x: x - 450, y: y - 150, type: 'card', cardId: 0, clones: 50 }),
-      describe({ file: 'card/front', x: x - 450, y: y + 150, type: 'card', cardId: 0, clones: 50 })
+      describe({ file: 'card/front', x: x - 450, y: y + 150, type: 'card', cardId: 0, clones: 50 }),
+      describe({ file: 'gold/1', x: -x + 280, y: y - 120, type: 'bit', clones: 150 }),
+      describe({ file: 'gold/1', x: -x + 280, y: y + 120, type: 'bit', clones: 150 }),
+      describe({ file: 'gold/5', x: -x + 120, y: y - 120, type: 'bit', clones: 35 }),
+      describe({ file: 'gold/5', x: -x + 120, y: y + 120, type: 'bit', clones: 35 }),
+      describe({ file: 'gold/10', x: -x - 40, y: y - 120, type: 'bit', clones: 30 }),
+      describe({ file: 'gold/10', x: -x - 40, y: y + 120, type: 'bit', clones: 30 }),
+      describe({ file: 'gold/25', x: -x - 200, y: y - 120, type: 'bit', clones: 15 }),
+      describe({ file: 'gold/25', x: -x - 200, y: y + 120, type: 'bit', clones: 15 }),
+      describe({ file: 'card/front', x: -x + 450, y: y - 150, type: 'card', cardId: 0, clones: 50 }),
+      describe({ file: 'card/front', x: -x + 450, y: y + 150, type: 'card', cardId: 0, clones: 50 })
     ]
   }
 
   describeMarket (x: number, y: number): Description[] {
     return [
       describe({ file: 'board/court', x, y, type: 'board' }),
-      describe({ file: 'card/front', x: x - 0, y, type: 'card', cardId: this.deal.market }),
-      describe({ file: 'card/front', x: x - 0, y: y + 330, type: 'card', cardId: this.deal.exile })
+      describe({ file: 'card/front', x: x - 80, y, type: 'card', cardId: this.deal.market[0] }),
+      describe({ file: 'card/front', x: x + 80, y, type: 'card', cardId: this.deal.market[1] }),
+      describe({ file: 'card/front', x: x - 0, y: y + 330, type: 'card', cardId: this.deal.dungeon })
     ]
   }
 

@@ -5,8 +5,8 @@ export class Deal {
   hand: number[]
   reserve: number[]
   center: number[]
-  market: number
-  exile: number
+  market: number[]
+  dungeon: number
 
   constructor (stage: Stage) {
     const setupMessage = stage.setupMessage
@@ -16,17 +16,18 @@ export class Deal {
     const ids = [...cards.keys()]
     const shuffleable = ids.filter(i => i !== 4 && i !== 0)
     const shuffled = stage.shuffle(shuffleable)
-    const dealCount = 14 + playerCount
+    const dealCount = 15 + playerCount
     const sliced = shuffled.slice(0, dealCount)
     console.log('sliced', sliced)
     const sorted = [...sliced].sort((a, b) => a - b)
-    const market = sorted.shift()
-    if (market == null) throw new Error('market == null')
+    const market1 = sorted.shift()
+    if (market1 == null) throw new Error('market1 == null')
+    const market = [market1]
     this.market = market
     const green = sorted.filter(i => cards[i].color === 'Green').sort((a, b) => a - b)
     const exile = green.shift()
     if (exile == null) throw new Error('exile == null')
-    this.exile = exile
+    this.dungeon = exile
     const red = sorted.filter(i => cards[i].color === 'Red').sort((a, b) => a - b)
     const yellow = sorted.filter(i => cards[i].color === 'Yellow').sort((a, b) => a - b)
     const portfolioCounts = {
@@ -43,7 +44,7 @@ export class Deal {
     this.logRanks('this.portfolio', this.portfolio)
     const PORTFOLIO_SIZE = 10
     if (this.portfolio.length < PORTFOLIO_SIZE) {
-      const remaining = sorted.filter(id => !this.portfolio.includes(id) && this.exile !== id)
+      const remaining = sorted.filter(id => !this.portfolio.includes(id) && this.dungeon !== id)
       const missing = PORTFOLIO_SIZE - this.portfolio.length
       const more = remaining.slice(0, missing)
       this.portfolio.push(...more)
@@ -54,8 +55,19 @@ export class Deal {
     this.logRanks('this.hand', this.hand)
     this.reserve = this.portfolio.slice(HAND_SIZE)
     this.logRanks('this.reserve', this.reserve)
-    this.center = sorted.filter(id => !this.portfolio.includes(id) && this.exile !== id)
-    const remaining = [...cards.keys()].filter(id => !this.portfolio.includes(id) && !this.center.includes(id) && this.exile !== id && this.market !== id && id !== 0)
+    const palatial = sorted.filter(id => !this.portfolio.includes(id) && this.dungeon !== id)
+    const market2 = palatial.shift()
+    if (market2 == null) throw new Error('market2 == null')
+    this.market.push(market2)
+    this.center = palatial
+    const remaining = [...cards.keys()].filter(id => {
+      const result =
+        !this.portfolio.includes(id) &&
+        !this.center.includes(id) &&
+        this.dungeon !== id &&
+        !this.market.includes(id) && id !== 0
+      return result
+    })
     this.logRanks('remaining', remaining)
   }
 
