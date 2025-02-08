@@ -80,15 +80,15 @@ export class Scribe {
       })
     })
     const goldCounts = {
-      2: { five: 4, ten: 5 },
-      3: { five: 4, ten: 4 },
-      4: { five: 2, ten: 4 },
-      5: { five: 2, ten: 3 }
+      2: { five: 4, ten: 3 },
+      3: { five: 4, ten: 2 },
+      4: { five: 2, ten: 2 },
+      5: { five: 2, ten: 1 }
     }
     const goldCount = goldCounts[this.playerCount]
     const gold = [
-      ...describeRow('gold/5', x + 250, y + sgn * 240, 'bit', goldCount.five, 50), //  * (8 - this.playerCount)),
-      ...describeRow('gold/10', x - 250, y + sgn * 240, 'bit', goldCount.ten, 100)
+      ...describeRow('gold/5', x + 250, y + sgn * 240, 'bit', goldCount.five, 50 * goldCount.five),
+      ...describeRow('gold/10', x - 250, y + sgn * 240, 'bit', goldCount.ten, 50 * goldCount.ten)
     ]
     const descriptions = [...boards, ...hand, ...reserve, ...gold]
     return descriptions
@@ -122,9 +122,8 @@ export class Scribe {
   describeMarket (x: number, y: number): Description[] {
     return [
       describe({ file: 'board/court', x, y, type: 'board' }),
-      describe({ file: 'card/front', x: x - 80, y, type: 'card', cardId: this.deal.market[0] }),
-      describe({ file: 'card/front', x: x + 80, y, type: 'card', cardId: this.deal.market[1] }),
-      describe({ file: 'card/front', x: x - 0, y: y + 330, type: 'card', cardId: this.deal.dungeon })
+      describe({ file: 'card/front', x: x + 33, y, type: 'card', cardId: this.deal.market[0] }),
+      describe({ file: 'card/front', x: x + 33, y: y + 330, type: 'card', cardId: this.deal.dungeon })
     ]
   }
 

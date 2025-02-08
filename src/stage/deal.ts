@@ -16,7 +16,7 @@ export class Deal {
     const ids = [...cards.keys()]
     const shuffleable = ids.filter(i => i !== 4 && i !== 0)
     const shuffled = stage.shuffle(shuffleable)
-    const dealCount = 15 + playerCount
+    const dealCount = 14 + playerCount
     const sliced = shuffled.slice(0, dealCount)
     console.log('sliced', sliced)
     const sorted = [...sliced].sort((a, b) => a - b)
@@ -56,9 +56,9 @@ export class Deal {
     this.reserve = this.portfolio.slice(HAND_SIZE)
     this.logRanks('this.reserve', this.reserve)
     const palatial = sorted.filter(id => !this.portfolio.includes(id) && this.dungeon !== id)
-    const market2 = palatial.shift()
-    if (market2 == null) throw new Error('market2 == null')
-    this.market.push(market2)
+    // const market2 = palatial.shift()
+    // if (market2 == null) throw new Error('market2 == null')
+    // this.market.push(market2)
     this.center = palatial
     const remaining = [...cards.keys()].filter(id => {
       const result =
