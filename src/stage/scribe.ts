@@ -81,9 +81,9 @@ export class Scribe {
     })
     const goldCounts = {
       2: { five: 4, ten: 3 },
-      3: { five: 4, ten: 2 },
-      4: { five: 2, ten: 2 },
-      5: { five: 2, ten: 1 }
+      3: { five: 4, ten: 3 },
+      4: { five: 4, ten: 3 },
+      5: { five: 4, ten: 3 }
     }
     const goldCount = goldCounts[this.playerCount]
     const gold = [

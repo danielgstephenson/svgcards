@@ -14,12 +14,15 @@ export class Deal {
     const cards = setupMessage.cards
     console.log('cards', cards)
     const ids = [...cards.keys()]
-    const shuffleable = ids.filter(i => i !== 4 && i !== 0)
+    const guaranteed: number[] = [11, 12, 13, 14, 16, 17]
+    const shuffleable = ids.filter(i => i !== 4 && i !== 0 && !guaranteed.includes(i))
     const shuffled = stage.shuffle(shuffleable)
-    const dealCount = 14 + playerCount
+    const dealCount = 14 + playerCount - guaranteed.length
     const sliced = shuffled.slice(0, dealCount)
-    console.log('sliced', sliced)
-    const sorted = [...sliced].sort((a, b) => a - b)
+    const combined = [...guaranteed, ...sliced]
+    const dealt = stage.shuffle(combined)
+    console.log('sliced', dealt)
+    const sorted = [...dealt].sort((a, b) => a - b)
     const market1 = sorted.shift()
     if (market1 == null) throw new Error('market1 == null')
     const market = [market1]
