@@ -14,11 +14,12 @@ export class Deal {
     const cards = setupMessage.cards
     console.log('cards', cards)
     const ids = [...cards.keys()]
-    const guaranteedRanks: number[] = [8, 4, 12, 13, 14, 15]
+    const guaranteedRanks: number[] = []
     const guaranteedIndices = guaranteedRanks.map((rank) => rank - 1)
-    const shuffleable = ids.filter(i => i !== 4 && i !== 0 && !guaranteedIndices.includes(i))
+    const shuffleable = ids.filter(i => i !== 4 && i !== 7 && i !== 0 && !guaranteedIndices.includes(i))
     const shuffled = stage.shuffle(shuffleable)
-    const dealCount = 14 + playerCount - guaranteedIndices.length
+    const dealCount = 13 + playerCount - guaranteedIndices.length
+    console.log('dealCount', dealCount)
     const sliced = shuffled.slice(0, dealCount)
     const combined = [...guaranteedIndices, ...sliced]
     const dealt = stage.shuffle(combined)
@@ -35,16 +36,16 @@ export class Deal {
     const red = sorted.filter(i => cards[i].color === 'Red').sort((a, b) => a - b)
     const yellow = sorted.filter(i => cards[i].color === 'Yellow').sort((a, b) => a - b)
     const portfolioCounts = {
-      2: { green: 2, red: 4, yellow: 3 },
-      3: { green: 2, red: 4, yellow: 3 },
-      4: { green: 2, red: 4, yellow: 3 },
-      5: { green: 2, red: 4, yellow: 3 }
+      2: { green: 1, red: 4, yellow: 3 },
+      3: { green: 1, red: 4, yellow: 3 },
+      4: { green: 1, red: 4, yellow: 3 },
+      5: { green: 1, red: 4, yellow: 3 }
     }
     const portfolioCount = portfolioCounts[playerCount]
     const portfolioGreen = green.slice(0, portfolioCount.green)
     const portfolioRed = red.slice(0, portfolioCount.red)
     const portfolioYellow = yellow.slice(0, portfolioCount.yellow)
-    this.portfolio = [4, ...portfolioGreen, ...portfolioRed, ...portfolioYellow]
+    this.portfolio = [4, 7, ...portfolioGreen, ...portfolioRed, ...portfolioYellow]
     this.logRanks('this.portfolio', this.portfolio)
     const PORTFOLIO_SIZE = 10
     if (this.portfolio.length < PORTFOLIO_SIZE) {
