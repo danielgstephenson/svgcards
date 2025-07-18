@@ -14,7 +14,7 @@ export class Deal {
     const cards = setupMessage.cards
     console.log('cards', cards)
     const ids = [...cards.keys()]
-    const guaranteedRanks: number[] = []
+    const guaranteedRanks: number[] = [6, 7, 25]
     const guaranteedIndices = guaranteedRanks.map((rank) => rank - 1)
     const shuffleable = ids.filter(i => i !== 4 && i !== 7 && i !== 0 && !guaranteedIndices.includes(i))
     const shuffled = stage.shuffle(shuffleable)
