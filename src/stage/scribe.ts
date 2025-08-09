@@ -161,10 +161,10 @@ export class Scribe {
             <hr id="details-separator">
             <h3 id="details-powers">Powers</h3>
             <div id="details-beginning">
-              ${cardInfo.beginning}
+              • ${cardInfo.beginning}
             </div>
             <div id="details-end">
-              ${cardInfo.end}
+              • ${cardInfo.end}
             </div>
             ${bonus}
           </div>
