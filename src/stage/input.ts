@@ -94,6 +94,7 @@ export class Input {
   mouseover (event: MouseEvent, part: Part): void {
     this.mouseOverParts.push(part)
     if (part instanceof Card) {
+      if (part.side === 'back') return
       const color = this.stage.builder.colors.get(part.description.color)
       if (color === undefined) throw new Error(`Missing color ${part.description.color}`)
       const a = this.detailDiv.innerHTML.replace(/\s+/g, '')
