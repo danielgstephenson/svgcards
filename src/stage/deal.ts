@@ -14,7 +14,8 @@ export class Deal {
     const cards = setupMessage.cards
     console.log('cards', cards)
     const ids = [...cards.keys()]
-    const guaranteedRanks: number[] = [10, 12, 13, 14]
+    const guaranteedRanks: number[] = [3, 9, 10, 12, 13, 14]
+    console.log('guaranteedRanks', guaranteedRanks)
     const excludedRanks: number[] = [4, 15]
     const guaranteedIndices = guaranteedRanks.map((rank) => rank - 1)
     const excludedIndices = excludedRanks.map((rank) => rank - 1)
