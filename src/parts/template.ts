@@ -9,7 +9,7 @@ export class Template {
     this.builder = builder
     this.element = fragment.select('g')
     this.builder.stage.paper.append(this.element)
-    const width = this.element.getBBox().width
+    const width = this.element.getBBox().width // Error on this line
     const height = this.element.getBBox().height
     const startMatrix = this.element.transform().localMatrix.translate(-0.5 * width, -0.5 * height)
     this.element.transform(startMatrix.toTransformString())

@@ -108,6 +108,7 @@ export class Input {
         return false
       })
       if (same) return
+      console.log('part.description.details', part.description.details)
       this.detailDiv.innerHTML = part.description.details
       this.detailDiv.style.backgroundColor = color
       const redColor = this.stage.builder.colors.get('Red')

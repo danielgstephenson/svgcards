@@ -74,7 +74,9 @@ export class Builder {
     files.forEach(file => {
       const path = `assets/${file}.svg`
       Snap.load(path, (fragment: Snap.Fragment) => {
-        const template = new Template(this, fragment)
+        console.log('path', path)
+        console.log('fragment', fragment)
+        const template = new Template(this, fragment) // Error originates here
         this.templates.set(file, template)
         if (this.templates.size === files.length) {
           this.build()
