@@ -73,7 +73,7 @@ export class Scribe {
       const space = 160
       return describe({
         file: 'card/front',
-        x: x + 175 + (i - 3) * space,
+        x: x + 300 + (i - 3) * space,
         y: y - sgn * +25,
         type: 'card',
         cardId: reserveId
