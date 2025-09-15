@@ -19,7 +19,7 @@ export class Client {
     this.syncingContainer = this.getElementById('syncing-container')
     this.syncingCount = this.getElementById('syncing-count')
     this.socket.on('connected', () => {
-      console.log('connected')
+      console.info('connected')
     })
     this.socket.on('setup', (setupMessage: SetupMessage) => {
       if (this.setupMessage === undefined) {

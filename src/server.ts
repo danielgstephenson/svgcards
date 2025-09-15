@@ -34,10 +34,10 @@ export class Server {
   async start (): Promise<void> {
     this.cards = await readCards()
     this.httpServer.listen(this.config.port, () => {
-      console.log(`listening on port: ${this.config.port}`)
+      console.info(`listening on port: ${this.config.port}`)
     })
     this.io.on('connection', async socket => {
-      console.log('connected:', socket.id)
+      console.info('connected:', socket.id)
       const user = new User(socket)
       this.users.push(user)
       socket.emit('setup', new SetupMessage(this, socket.id))

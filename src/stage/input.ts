@@ -34,13 +34,24 @@ export class Input {
       if (event.button === 2) this.paper.zpd({ pan: false })
     })
     document.addEventListener('keydown', (event) => {
+      const old = this.keyboard.get(event.key)
       this.keyboard.set(event.key, true)
       this.keyboardPan()
       this.keyboardZoom()
-      const n = Number(event.key) === 0 ? 10 : Number(event.key)
-      if (isNaN(n)) return false
+      if (old === true) {
+        return true
+      }
+      const trimmed = event.key.trim()
+      if (trimmed.length === 0) {
+        return
+      }
+      const number = Number(event.key)
+      const numeric = !isNaN(number) && isFinite(number)
+      if (!numeric) {
+        return
+      }
+      const n = number === 0 ? 10 : number
       if (n > 0) this.drawFromStack(n)
-      console.log(2)
     })
     document.addEventListener('keyup', (event) => {
       this.keyboard.set(event.key, false)
@@ -108,7 +119,6 @@ export class Input {
         return false
       })
       if (same) return
-      console.log('part.description.details', part.description.details)
       this.detailDiv.innerHTML = part.description.details
       this.detailDiv.style.backgroundColor = color
       const redColor = this.stage.builder.colors.get('Red')
@@ -134,22 +144,29 @@ export class Input {
   }
 
   drawFromStack (n: number): void {
-    if (this.mouseOverParts.length > 0) {
-      const part = this.mouseOverParts[0]
-      const origin = part.element.transform().string
-      const stack = part.getStack()
-      const draw = stack.slice(0, n)
-      draw.forEach((drawPart, i) => {
-        const x = 0
-        const count = draw.length - i
-        const yBase = 10 * (draw.length - 2)
-        const yDown = 50 * count
-        const y = -yBase + yDown
-        drawPart.element.transform(`${origin}t${x},${y}`)
-        drawPart.bringToTop()
-        drawPart.select()
-        drawPart.moved = true
-      })
+    if (this.mouseOverParts.length === 0) {
+      return
     }
+    const part = this.mouseOverParts[0]
+    if (part.type === 'board') {
+      return
+    }
+    const origin = part.element.transform().string
+    const stack = part.getStack()
+    if (stack.length < 2 || stack.length < n) {
+      return
+    }
+    const draw = stack.slice(0, n)
+    draw.forEach((drawPart, i) => {
+      const x = 0
+      const count = draw.length - i
+      const yBase = 10 * (draw.length - 2)
+      const yDown = 50 * count
+      const y = -yBase + yDown
+      drawPart.element.transform(`${origin}t${x},${y}`)
+      drawPart.bringToTop()
+      drawPart.select()
+      drawPart.moved = true
+    })
   }
 }

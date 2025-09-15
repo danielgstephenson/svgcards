@@ -72,10 +72,6 @@ export class Card extends Part {
   addIcon (): void {
     const iconFile = `icons/${this.cardInfo.icon}`
     const iconTemplate = this.builder.templates.get(iconFile)
-    if (iconFile === 'icons/PiGavelLight') {
-      console.log('iconFile', iconFile)
-      console.log('iconTemplate', iconTemplate)
-    }
     if (iconTemplate == null) throw new Error(`no template for ${iconFile}`)
     const icon = iconTemplate.element.clone()
     this.element.append(icon)

@@ -12,21 +12,21 @@ export class Deal {
     const setupMessage = stage.setupMessage
     const playerCount = stage.setupMessage.playerCount
     const cards = setupMessage.cards
-    console.log('cards', cards)
+    console.info('cards', cards)
     const ids = [...cards.keys()]
     const guaranteedRanks: number[] = [2, 7, 11, 12, 13, 14]
-    console.log('guaranteedRanks', guaranteedRanks)
+    console.info('guaranteedRanks', guaranteedRanks)
     const excludedRanks: number[] = []
     const guaranteedIndices = guaranteedRanks.map((rank) => rank - 1)
     const excludedIndices = excludedRanks.map((rank) => rank - 1)
     const shuffleable = ids.filter(i => i !== 4 && i !== 7 && i !== 0 && !guaranteedIndices.includes(i) && !excludedIndices.includes(i))
     const shuffled = stage.shuffle(shuffleable)
     const dealCount = 13 + playerCount - guaranteedIndices.length
-    console.log('dealCount', dealCount)
+    console.info('dealCount', dealCount)
     const sliced = shuffled.slice(0, dealCount)
     const combined = [...guaranteedIndices, ...sliced]
     const dealt = stage.shuffle(combined)
-    console.log('sliced', dealt)
+    console.info('sliced', dealt)
     const sorted = [...dealt].sort((a, b) => a - b)
     const market1 = sorted.shift()
     if (market1 == null) throw new Error('market1 == null')
@@ -49,7 +49,7 @@ export class Deal {
     const portfolioRed = red.slice(0, portfolioCount.red)
     const portfolioYellow = yellow.slice(0, portfolioCount.yellow)
     this.portfolio = [4, 7, ...portfolioGreen, ...portfolioRed, ...portfolioYellow]
-    this.logRanks('this.portfolio', this.portfolio)
+    this.printRanks('this.portfolio', this.portfolio)
     const PORTFOLIO_SIZE = 10
     if (this.portfolio.length < PORTFOLIO_SIZE) {
       const remaining = sorted.filter(id => !this.portfolio.includes(id) && this.dungeon !== id)
@@ -60,9 +60,9 @@ export class Deal {
     this.portfolio.sort((a, b) => a - b)
     const HAND_SIZE = 5
     this.hand = this.portfolio.slice(0, HAND_SIZE)
-    this.logRanks('this.hand', this.hand)
+    this.printRanks('this.hand', this.hand)
     this.reserve = this.portfolio.slice(HAND_SIZE)
-    this.logRanks('this.reserve', this.reserve)
+    this.printRanks('this.reserve', this.reserve)
     const palatial = sorted.filter(id => !this.portfolio.includes(id) && this.dungeon !== id)
     // const market2 = palatial.shift()
     // if (market2 == null) throw new Error('market2 == null')
@@ -76,11 +76,11 @@ export class Deal {
         !this.market.includes(id) && id !== 0
       return result
     })
-    this.logRanks('remaining', remaining)
+    this.printRanks('remaining', remaining)
   }
 
-  logRanks (label: string, ids: number[]): void {
+  printRanks (label: string, ids: number[]): void {
     const ranks = ids.map(id => id + 1)
-    console.log(label, ranks)
+    console.info(label, ranks)
   }
 }
