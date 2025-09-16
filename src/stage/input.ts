@@ -151,6 +151,9 @@ export class Input {
     if (part.type === 'board') {
       return
     }
+    if (this.stage.input.selectedParts.includes(part)) {
+      return
+    }
     const origin = part.element.transform().string
     const stack = part.getStack()
     if (stack.length < 2 || stack.length < n) {
