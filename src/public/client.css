@@ -80,7 +80,7 @@ html {
 }
 
 #roundStructure {
-  font-size: 1.5vh; 
+  font-size: 1.5vmin; 
   text-align: left; 
   height: 51vh;
   border: 5px solid black;
@@ -93,14 +93,15 @@ html {
 
 #sideBar {
   background: #f7f1f5; 
-  color: black;
   border: 0px solid black;
-  width: 33vw; 
+  color: black;
   height: 100vh; 
   float: left; 
-  position: relative;
   font-family: monospace;
   font-size: 1.5vh;
+  min-width: 500px;
+  position: relative;
+  width: 26vw; 
 }
 
 svg {
@@ -217,6 +218,10 @@ svg {
   background: rgba(213, 229, 255, 1);
   padding: 50px;
   height: fit-content;
+}
+
+#structure-buy {
+  white-space: nowrap;
 }
 
 #structure-end {

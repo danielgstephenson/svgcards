@@ -18,30 +18,31 @@
   </div>
   <div id='sideBar'>
     <div id="roundStructure">
-      <h2>Wait for everyone to say they are ready</h2>
       <h3>Phase 1 - Plan</h3>
       - Exile 1 card from your hand face down<br>
       - Play 1 card from your hand face down<br>
       - Draw from deck until you have at least 3 in hand, then take pawns if needed <br>
       <h3>Phase 2 - Scandal</h3>
-      - When everyone is ready, slide exile cards away and reveal play cards<br>
+      - When <i>everyone</i> is ready, add exile cards to exile stack<br>
+      - Reveal play cards<br>
       - If total played eyes more than player count, put lowest rank palace card on trial<br>
       <h3>Phase 3 - Powers</h3>
       - Use listed powers on card you played<br>
-      <span id="structure-end">- If palace is empty, game ends</span><br>
+      <span id="structure-end">- If palace is empty, game ends <i>immediately</i></span><br>
       <h3>Phase 4 - Scapegoat</h3>
       - Put lowest rank remaining palace card on trial<br>
       - Put highest rank played card on trial, ties go to the dungeon<br>
-      <h3>Phase 5 - Auction</h3>
+      <h3>Phase 5 - Auction (all cards on trial)</h3>
       - Announce <span id="structure-bonus">bonus</span> powers on played cards<br>
-      - Raise your bid by any amount of gold any time (not silver)<br>
-      - May withdraw if tied and not last bidder<br>
-      - When no one wants to raise or withdraw, highest untied bidder takes 1 or more cards on trial into discard<br>
-      (if all bids tied at end all cards go to dungeon)</br>
+      - Raise your bid by any amount of gold any time (no changing silver into gold)<br>
+      - May withdraw if tied and not last bidder (withdrawn bids stuck at 0 this round)<br>
+      - At any time, highest untied bidder may ask <i>"Is there no one else?"</i><br>
+      - If no one wants to raise or withdraw, highest untied bidder takes 1 or more cards on trial into discard (if all bids tied cards go to dungeon)</br>
       - Remaining cards on trial go to dungeon<br>
       <h3>Phase 6 - Discard</h3>
       - Discard played card<br>
       - Cards in discard enter deck from lowest to highest<br>
+      - Continue to next round <b>even if palace is empty</b><br>
     </div>
     <div id="detailDiv"></div>
     <div id="victoryRules">
