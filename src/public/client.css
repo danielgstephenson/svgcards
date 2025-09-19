@@ -91,6 +91,45 @@ html {
   overflow: hidden;
 }
 
+.reverse #roundStructure {
+  display: none;
+}
+
+#cardList {
+  display: none;
+}
+
+.reverse #cardList {
+  display: block;
+  font-size: 0.95vmin; 
+  text-align: left; 
+  height: 51vh;
+  border: 5px solid black;
+  border-top: 0px;
+  border-bottom: 0px; 
+  user-select: none; 
+  overflow: auto;
+}
+
+.cardListing {
+  padding: 1px 5px;
+}
+
+.cardListing.red {
+  color: white;
+}
+
+.cardListingBonus {
+  background: white;
+  color: black;
+  padding: 1px 5px;
+}
+
+.cardListingEye {
+  height: 0.5vmin;
+  margin-left: 3px;
+}
+
 #sideBar {
   background: #f7f1f5; 
   border: 0px solid black;

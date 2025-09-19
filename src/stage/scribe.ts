@@ -145,7 +145,6 @@ export class Scribe {
         return `<img class="details-charge" src="/assets/card/${charge}.svg">`
       })
       const chargesString = charges.join('')
-      console.log('cardInfo', cardInfo)
       description.details = `
         <div id="details-container">
           <div id="details-top">
