@@ -88,7 +88,7 @@ html {
   border-bottom: 0px; 
   padding: 5px; 
   user-select: none; 
-  overflow: hidden;
+  overflow: auto;
 }
 
 .reverse #roundStructure {
@@ -101,7 +101,7 @@ html {
 
 .reverse #cardList {
   display: block;
-  font-size: 0.95vmin; 
+  font-size: 1vmin; 
   text-align: left; 
   height: 51vh;
   border: 5px solid black;
@@ -112,22 +112,60 @@ html {
 }
 
 .cardListing {
-  padding: 1px 5px;
+  display: flex;
+  padding: 1px 1px;
+  border-bottom: 1px solid black;
+}
+
+.cardListing.red {
+  border-bottom: 1px solid white;
+}
+
+.cardListingPowers {
+  display: flex;
+  width: 100%;
+}
+
+.cardListingPower {
+  padding-left: 4px;
 }
 
 .cardListing.red {
   color: white;
 }
 
+.cardListingBeginning {
+  border-right: 1px solid black;
+  padding-right: 4px;
+}
+
+.red .cardListingBeginning {
+  border-right: 1px solid white;
+}
+
 .cardListingBonus {
   background: white;
   color: black;
-  padding: 1px 5px;
+  padding: 0px 2px 2px 2px;
 }
 
 .cardListingEye {
   height: 0.5vmin;
   margin-left: 3px;
+}
+
+.cardListingRank {
+  font-weight: bold;
+  padding-right: 3px;
+  white-space: nowrap;
+  border-right: 1px solid black;
+}
+
+.red .cardListingRank {
+  font-weight: bold;
+  padding-right: 3px;
+  white-space: nowrap;
+  border-right: 1px solid white;
 }
 
 #sideBar {

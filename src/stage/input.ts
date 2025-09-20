@@ -14,7 +14,7 @@ export class Input {
   selectedParts: Part[] = []
   detailDiv: HTMLDivElement
 
-  constructor(stage: Stage) {
+  constructor (stage: Stage) {
     this.stage = stage
     this.paper = stage.paper
     this.paper.zpd({ zoom: true, pan: false, drag: false })
@@ -63,30 +63,37 @@ export class Input {
     const sideBarDiv = document.getElementById('sideBar') as HTMLDivElement
     console.log('sideBarDiv', sideBarDiv)
     const cardListDiv = document.getElementById('cardList') as HTMLDivElement
-    sideBarDiv.addEventListener('click', () => {
-      console.log('sidebaroundStructureDiv click')
-      sideBarDiv.classList.toggle('reverse')
-      cardListDiv.innerHTML = this.stage.setupMessage.cards.map(card => {
-        const red = card.color === 'Red'
-        const redClass = red ? 'cardListing red' : ''
-        const color = this.stage.builder.colors.get(card.color)
-        const bonus = card.bonus
-          ? `<div class="cardListingBonus" style="border: 2px solid ${color}">${card.bonus}</div>`
-          : ''
-        const time = Number(card.time)
-        const timeRange = range(time)
-        const eye = red ? 'hourglass-white' : 'hourglass'
-        const eyes = timeRange.map(i => {
-          return `<img class="cardListingEye" src="/assets/card/${eye}.svg">`
-        })
-        const eyesString = eyes.join('')
-        return `
-          <div class="cardListing ${redClass}" style="background: ${color};">
-            <span class="cardListingRank">${card.rank}</span>${eyesString}: ${card.beginning} | ${card.end}
+    cardListDiv.innerHTML = this.stage.setupMessage.cards.map(card => {
+      const red = card.color === 'Red'
+      const redClass = red ? 'cardListing red' : ''
+      const color = this.stage.builder.colors.get(card.color)
+      const bonus = card.bonus
+        ? `<div class="cardListingBonus">${card.bonus}</div>`
+        : ''
+      const time = Number(card.time)
+      const timeRange = range(time)
+      const eye = red ? 'hourglass-white' : 'hourglass'
+      const eyes = timeRange.map(i => {
+        return `<img class="cardListingEye" src="/assets/card/${eye}.svg">`
+      })
+      const eyesString = eyes.join('')
+      return `
+        <div class="cardListing ${redClass}" style="background: ${color};">
+          <div class="cardListingRank">${card.rank}${eyesString}</div>
+          <div class="cardListingPowers">
+            <div class="cardListingBeginning cardListingPower">${card.beginning}</div>
+            <div class="cardListingPower">${card.end}</div>
           </div>
-          ${bonus}
-        `
-      }).join('\n')
+        </div>
+        ${bonus}
+      `
+    }).join('\n')
+    const roundStructureDiv = document.getElementById('roundStructure') as HTMLDivElement
+    roundStructureDiv.addEventListener('click', () => {
+      sideBarDiv.classList.toggle('reverse')
+    })
+    cardListDiv.addEventListener('click', () => {
+      sideBarDiv.classList.toggle('reverse')
     })
   }
 
