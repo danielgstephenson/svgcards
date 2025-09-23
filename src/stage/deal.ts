@@ -14,30 +14,39 @@ export class Deal {
     const cards = setupMessage.cards
     console.info('cards', cards)
     const ids = [...cards.keys()]
-    const guaranteedRanks: number[] = [10, 12, 14]
+    const guaranteedRanks: number[] = [6, 10, 12, 13, 14, 16, 17, 18, 19, 20]
     console.info('guaranteedRanks', guaranteedRanks)
     const excludedRanks: number[] = []
+    console.info('excludedRanks', excludedRanks)
     const guaranteedIndices = guaranteedRanks.map((rank) => rank - 1)
     const excludedIndices = excludedRanks.map((rank) => rank - 1)
     const shuffleable = ids.filter(i => i !== 4 && i !== 7 && i !== 0 && !guaranteedIndices.includes(i) && !excludedIndices.includes(i))
+    this.printRanks('shuffleable', shuffleable)
+    console.info('shuffleable.length', shuffleable.length)
     const shuffled = stage.shuffle(shuffleable)
     const dealCount = 13 + playerCount - guaranteedIndices.length
     console.info('dealCount', dealCount)
     const sliced = shuffled.slice(0, dealCount)
+    this.printRanks('sliced', sliced)
+    console.info('sliced.length', sliced.length)
+    if (sliced.length !== dealCount) {
+      throw new Error('No enough dealt cards')
+    }
     const combined = [...guaranteedIndices, ...sliced]
     const dealt = stage.shuffle(combined)
-    console.info('sliced', dealt)
+    this.printRanks('dealt', dealt)
     const sorted = [...dealt].sort((a, b) => a - b)
+    this.printRanks('sorted', sorted)
     const market1 = sorted.shift()
     if (market1 == null) throw new Error('market1 == null')
     const market = [market1]
     this.market = market
     const green = sorted.filter(i => cards[i].color === 'Green').sort((a, b) => a - b)
-    const exile = green.shift()
-    if (exile == null) throw new Error('exile == null')
-    this.dungeon = exile
-    const red = sorted.filter(i => cards[i].color === 'Red').sort((a, b) => a - b)
     const yellow = sorted.filter(i => cards[i].color === 'Yellow').sort((a, b) => a - b)
+    const dungeon = green.shift() ?? yellow.shift()
+    if (dungeon == null) throw new Error('dungeon == null')
+    this.dungeon = dungeon
+    const red = sorted.filter(i => cards[i].color === 'Red').sort((a, b) => a - b)
     const portfolioCounts = {
       2: { green: 1, red: 4, yellow: 3 },
       3: { green: 1, red: 4, yellow: 3 },
@@ -49,7 +58,6 @@ export class Deal {
     const portfolioRed = red.slice(0, portfolioCount.red)
     const portfolioYellow = yellow.slice(0, portfolioCount.yellow)
     this.portfolio = [4, 7, ...portfolioGreen, ...portfolioRed, ...portfolioYellow]
-    this.printRanks('this.portfolio', this.portfolio)
     const PORTFOLIO_SIZE = 10
     if (this.portfolio.length < PORTFOLIO_SIZE) {
       const remaining = sorted.filter(id => !this.portfolio.includes(id) && this.dungeon !== id)
@@ -58,6 +66,7 @@ export class Deal {
       this.portfolio.push(...more)
     }
     this.portfolio.sort((a, b) => a - b)
+    this.printRanks('this.portfolio', this.portfolio)
     const HAND_SIZE = 5
     this.hand = this.portfolio.slice(0, HAND_SIZE)
     this.printRanks('this.hand', this.hand)

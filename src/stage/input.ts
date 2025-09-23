@@ -19,7 +19,6 @@ export class Input {
     this.paper = stage.paper
     this.paper.zpd({ zoom: true, pan: false, drag: false })
     this.detailDiv = document.getElementById('detailDiv') as HTMLDivElement
-    console.log('detailDiv', this.detailDiv)
     const width = document.documentElement.clientWidth
     const height = document.documentElement.clientHeight
     const sideBarShare = 0.26
@@ -59,9 +58,7 @@ export class Input {
       this.keyboard.set(event.key, false)
     })
 
-    console.log('document loaded')
     const sideBarDiv = document.getElementById('sideBar') as HTMLDivElement
-    console.log('sideBarDiv', sideBarDiv)
     const cardListDiv = document.getElementById('cardList') as HTMLDivElement
     cardListDiv.innerHTML = this.stage.setupMessage.cards.map(card => {
       const red = card.color === 'Red'
@@ -97,7 +94,7 @@ export class Input {
     })
   }
 
-  keyboardPan(): void {
+  keyboardPan (): void {
     let xPan = 0
     let yPan = 0
     const panSpeed = 10
@@ -124,7 +121,7 @@ export class Input {
     }
   }
 
-  keyboardZoom(): void {
+  keyboardZoom (): void {
     let zoomChange = 0
     if (this.isKeyDown('PageUp') || this.isKeyDown(',')) zoomChange -= 0.01
     if (this.isKeyDown('PageDown') || this.isKeyDown('.')) zoomChange += 0.01
@@ -137,11 +134,11 @@ export class Input {
     if (this.isKeyDown('/')) this.paper.zoomTo(0.2, 1)
   }
 
-  isKeyDown(key: string): boolean {
+  isKeyDown (key: string): boolean {
     return this.keyboard.get(key) ?? false
   }
 
-  mouseover(event: MouseEvent, part: Part): void {
+  mouseover (event: MouseEvent, part: Part): void {
     this.mouseOverParts.push(part)
     if (part instanceof Card) {
       if (part.side === 'back') return
@@ -169,11 +166,11 @@ export class Input {
     }
   }
 
-  mouseout(event: MouseEvent, part: Part): void {
+  mouseout (event: MouseEvent, part: Part): void {
     this.mouseOverParts = this.mouseOverParts.filter(otherPart => otherPart !== part)
   }
 
-  deselect(): void {
+  deselect (): void {
     this.selectedParts.forEach(part => {
       if (part.selected !== undefined) {
         part.selected.node.style.display = 'none'
@@ -182,7 +179,7 @@ export class Input {
     })
   }
 
-  drawFromStack(n: number): void {
+  drawFromStack (n: number): void {
     if (this.mouseOverParts.length === 0) {
       return
     }
