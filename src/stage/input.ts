@@ -64,7 +64,8 @@ export class Input {
       const red = card.color === 'Red'
       const redClass = red ? 'cardListing red' : ''
       const color = this.stage.builder.colors.get(card.color)
-      const bonus = card.bonus
+      if (color == null) throw new Error(`Missing color ${card.color}`)
+      const bonus = card.bonus != null && card.bonus !== ''
         ? `<div class="cardListingBonus">${card.bonus}</div>`
         : ''
       const time = Number(card.time)

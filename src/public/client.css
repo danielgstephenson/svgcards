@@ -27,6 +27,7 @@ canvas {
   height: 37vh; 
   border: 5px solid black; 
   padding: 10px;
+  overflow: auto;
 }
 
 #detailDiv.red {
@@ -80,7 +81,7 @@ html {
 }
 
 #roundStructure {
-  font-size: 1.5vmin; 
+  font-size: 19px; 
   text-align: left; 
   height: 51vh;
   border: 5px solid black;
@@ -175,7 +176,7 @@ html {
   height: 100vh; 
   float: left; 
   font-family: monospace;
-  font-size: 1.5vh;
+  font-size: 19px;
   min-width: 500px;
   position: relative;
   width: 26vw; 
@@ -192,7 +193,7 @@ svg {
 }
 
 #victoryRules {
-  font-size: 1.5vh; 
+  font-size: 20px; 
   text-align: left; 
   height: 12vh; 
   border: 5px solid black; 
@@ -200,7 +201,7 @@ svg {
   border-bottom: 0px; 
   padding: 5px 5px 5px 5px; 
   user-select: none; 
-  overflow: hidden;
+  overflow: auto;
 }
 
 #titleDiv {
@@ -227,10 +228,8 @@ svg {
   display: flex;
   flex-direction: column;
   height: 100%;
-}
-
-#details-top {
-  height: 100%
+  gap: 10px;
+  justify-content: space-between;
 }
 
 #details-bottom {

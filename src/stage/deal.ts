@@ -14,10 +14,13 @@ export class Deal {
     const cards = setupMessage.cards
     console.info('cards', cards)
     const ids = [...cards.keys()]
-    const guaranteedRanks: number[] = [6, 10, 12, 13, 14, 16, 17, 18, 19, 20]
+    const guaranteedRanks: number[] = []
+    // const guaranteedRanks: number[] = [2, 6, 10, 11, 13, 14, 15, 18, 19, 20]
     console.info('guaranteedRanks', guaranteedRanks)
-    const excludedRanks: number[] = []
-    console.info('excludedRanks', excludedRanks)
+    // const excludedRanks: number[] = [3, 7, 9]
+    // const excludedRanks: number[] = []
+    const excludedRanks: number[] = [4, 10, 12, 13, 14, 15] // New (3 players)
+    // console.info('excludedRanks', excludedRanks)
     const guaranteedIndices = guaranteedRanks.map((rank) => rank - 1)
     const excludedIndices = excludedRanks.map((rank) => rank - 1)
     const shuffleable = ids.filter(i => i !== 4 && i !== 7 && i !== 0 && !guaranteedIndices.includes(i) && !excludedIndices.includes(i))

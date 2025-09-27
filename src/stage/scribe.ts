@@ -136,7 +136,7 @@ export class Scribe {
       const red = cardInfo.color === 'Red'
       const bonus = red
         ? `<div style="padding: 5px; background-color: white; color: black;">
-            <strong>Bonus</strong>: ${cardInfo.bonus}
+            <strong>Auction</strong>: ${cardInfo.bonus}
           </div>`
         : ''
       const timeRange = range(time)
