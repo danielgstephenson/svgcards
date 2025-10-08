@@ -21,7 +21,7 @@
       <h3>Phase 1 - Plan</h3>
       - Exile 1 card from your hand face down<br>
       - Play 1 card from your hand face down<br>
-      - Draw from deck until you have at least 3 in hand, then take pawns if needed <br>
+      - Draw from left side of queue until you have at least 3 in hand, then take pawns if needed <br>
       <h3>Phase 2 - Scandal</h3>
       - When <i>everyone</i> is ready, add exile cards to exile stack<br>
       - Reveal play cards<br>
@@ -30,18 +30,21 @@
       - Use listed powers on card you played<br>
       <span id="structure-end">- If palace is empty, game ends <i>immediately</i></span><br>
       <h3>Phase 4 - Takedown</h3>
-      - Put leftmost palace card on trial<br>
       - Put highest rank played card on trial, ties go to the dungeon<br>
+      - Put leftmost palace card on trial<br>
       - Announce <span id="structure-bonus">auction powers on red cards</span> left in play<br>
       <h3>Phase 5 - Auction (all cards on trial)</h3>
-      - Raise your bid by any amount of gold any time (no changing silver into gold)<br>
-      - May withdraw if tied and not last bidder (withdrawn bids stuck at 0 this round)<br>
+      - Raise your bid by any amount of gold any time<br>
+      (no changing silver into gold)<br>
+      - May withdraw if tied and not last to bid that amount<br>
+      (withdrawn bids stuck at 0 this round)<br>
       - At any time, anyone may ask <i>"Is there no one else?"</i><br>
-      - If no one wants to raise or withdraw, highest untied bidder takes 1 or more cards on trial into discard (if all bids tied cards go to dungeon)</br>
+      - If no one wants to raise or withdraw, highest untied bidder takes 1 or more cards on trial into discard <br>
+      (if all bids tied trial cards go to dungeon)</br>
       - Remaining cards on trial go to dungeon<br>
       <h3>Phase 6 - Discard</h3>
       - Discard played card<br>
-      - Cards in discard enter deck from lowest to highest<br>
+      - Cards in discard enter right side of queue from lowest to highest<br>
       - Continue to next round <b>even if palace is empty</b><br>
     </div>
     <div id="cardList"></div>
@@ -50,7 +53,7 @@
       <h3>Victory</h3>
       - Points equals rank of cards in hand<br>
       - 1 point for gold and silver (10 gold = 10 points)<br>
-      - No points for cards in deck, play, or exile<br>
+      - No points for cards in queue, play, or exile<br>
       - Tiebreaker is highest card in hand
     </div>
   </div>

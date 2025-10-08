@@ -21,7 +21,7 @@ export class Input {
     this.detailDiv = document.getElementById('detailDiv') as HTMLDivElement
     const width = document.documentElement.clientWidth
     const height = document.documentElement.clientHeight
-    const sideBarShare = 0.26
+    const sideBarShare = 0.28
     const centerX = sideBarShare * width + 0.5 * (1 - sideBarShare) * width
     this.paper.zoomTo(0.3, 10, undefined, () => {
       this.paper.panTo(centerX, height / 2)

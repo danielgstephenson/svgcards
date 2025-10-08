@@ -129,6 +129,7 @@ export class Scribe {
 
   annotate (description: Description): void {
     if (description.type === 'card') {
+      console.log('description', description)
       const cardInfo = this.setupMessage.cards[description.cardId]
       const time = Number(cardInfo.time)
       description.time = time
