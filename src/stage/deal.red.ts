@@ -8,29 +8,20 @@ export class Deal {
   dungeon: number
 
   constructor (stage: Stage) {
+    this.market = [5]
+    this.dungeon = 18
+    this.hand = [2, 3, 6, 8, 9]
     const playerCount = stage.setupMessage.playerCount
     if (playerCount === 2) {
-      this.market = [24]
-      this.dungeon = 6
-      this.hand = [3, 9, 11, 12, 14]
-      this.reserve = [13, 15, 16, 17, 18]
-      this.center = [1, 5, 8, 10, 19]
+      this.reserve = []
+      this.center = [20, 21, 22, 23, 24]
     } else if (playerCount === 3) {
-      this.market = [24]
-      this.dungeon = 23
-      this.hand = [2, 4, 6, 7, 11]
-      this.reserve = [3, 8, 12, 15, 21]
-      this.center = [9, 10, 17, 18, 19, 20]
+      this.reserve = [10, 11, 12, 13, 14]
+      this.center = [19, 20, 21, 22, 23, 24]
     } else if (playerCount === 4) {
-      this.market = [24]
-      this.dungeon = 23
-      this.hand = [2, 4, 6, 7, 11]
       this.reserve = [8, 15, 16, 17, 18]
       this.center = [9, 19, 20, 21, 22, 23, 24]
     } else {
-      this.market = [24]
-      this.dungeon = 23
-      this.hand = [2, 4, 6, 7, 11]
       this.reserve = [8, 9, 12, 15, 16]
       this.center = [17, 18, 19, 20, 21, 22, 23, 24]
     }

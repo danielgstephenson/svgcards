@@ -18,34 +18,22 @@
   </div>
   <div id='sideBar'>
     <div id="roundStructure">
-      <h3>Phase 1 - Plan</h3>
-      - Exile 1 card from your hand face down<br>
-      - Play 1 card from your hand face down<br>
-      - Draw from left side of queue until you have at least 3 in hand, then take pawns if needed <br>
+      <h3>Phase 1 - Play</h3>
+      - Draw from left side of queue until you have 3 in hand, then take pawns if needed<br>
+      - Exile 1 and play 1 from your hand face down<br>
+      - Add exile cards to exile stack, reveal and use play cards<br>
       <h3>Phase 2 - Scandal</h3>
-      - When <i>everyone</i> is ready, add exile cards to exile stack<br>
-      - Reveal play cards<br>
-      - If total played eyes more than player count, put leftmost palace card on trial<br>
-      <h3>Phase 3 - Powers</h3>
-      - Use listed powers on card you played<br>
-      <span id="structure-end">- If palace is empty, game ends <i>immediately</i></span><br>
-      <h3>Phase 4 - Takedown</h3>
-      - Put highest rank played card on trial, ties go to the dungeon<br>
-      - Put leftmost palace card on trial<br>
-      - Announce <span id="structure-bonus">auction powers on red cards</span> left in play<br>
-      <h3>Phase 5 - Auction (all cards on trial)</h3>
-      - Raise your bid by any amount of gold any time<br>
-      (no changing silver into gold)<br>
-      - May withdraw if tied and not last to bid that amount<br>
-      (withdrawn bids stuck at 0 this round)<br>
+      - Put leftmost palace card on trial
+      <span id="structure-end">(If Empress leaves the palace, game ends <i>immediately</i>)</span><br>
+      - Put highest rank played card on trial, ties go to dungeon<br>
+      add other played cards to right side of queue<br>
+      <h3>Phase 3 - Auction (all cards on trial)</h3>
+      - Raise your bid by any amount of gold any time (no changing silver into gold)<br>
+      - May withdraw if tied and not last to bid that amount (withdrawn bids stuck at 0 this round)<br>
       - At any time, anyone may ask <i>"Is there no one else?"</i><br>
-      - If no one wants to raise or withdraw, highest untied bidder takes 1 or more cards on trial into discard <br>
-      (if all bids tied trial cards go to dungeon)</br>
+      - If no one wants to raise or withdraw, highest untied bidder pays bid and takes 1 or more cards<br>
+      on trial into queue from lowest to highest (if all bids tied trial cards go to dungeon)<br>
       - Remaining cards on trial go to dungeon<br>
-      <h3>Phase 6 - Discard</h3>
-      - Discard played card<br>
-      - Cards in discard enter right side of queue from lowest to highest<br>
-      - Continue to next round <b>even if palace is empty</b><br>
     </div>
     <div id="cardList"></div>
     <div id="detailDiv"></div>

@@ -10,7 +10,7 @@ export class Deal {
   constructor (stage: Stage) {
     this.market = [1]
     this.dungeon = 5
-    this.hand = [2, 4, 6, 7, 110]
+    this.hand = [2, 4, 6, 7, 10]
     const playerCount = stage.setupMessage.playerCount
     if (playerCount === 2) {
       this.reserve = [8, 15, 16, 17, 18]

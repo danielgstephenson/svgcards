@@ -24,7 +24,7 @@ canvas {
 
 #detailDiv {
   color: black;
-  height: 37vh; 
+  height: 43vh; 
   border: 5px solid black; 
   padding: 10px;
   overflow: auto;
@@ -83,7 +83,7 @@ html {
 #roundStructure {
   font-size: 19px; 
   text-align: left; 
-  height: 51vh;
+  height: 45vh;
   border: 5px solid black;
   border-top: 0px;
   border-bottom: 0px; 
@@ -179,7 +179,7 @@ html {
   font-size: 19px;
   min-width: 500px;
   position: relative;
-  width: 28vw; 
+  width: 30vw; 
 }
 
 svg {

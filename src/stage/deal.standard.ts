@@ -18,11 +18,11 @@ export class Deal {
     // const guaranteedRanks: number[] = [2, 6, 10, 11, 13]
     console.info('guaranteedRanks', guaranteedRanks)
     // const excludedRanks: number[] = [3, 7, 9]
-    // const excludedRanks: number[] = []
+    const excludedRanks: number[] = []
     // const excludedRanks: number[] = [4, 10, 12, 13, 14, 15, 21] // New (2 players)
     // const excludedRanks: number[] = [4, 10, 12, 13, 14, 15] // New (3 players)
     // const excludedRanks: number[] = [4, 12, 13, 14, 15] // New (4 players)
-    const excludedRanks: number[] = [4, 12, 14, 15] // New (5 players)
+    // const excludedRanks: number[] = [4, 12, 14, 15] // New (5 players)
     // console.info('excludedRanks', excludedRanks)
     const guaranteedIndices = guaranteedRanks.map((rank) => rank - 1)
     const excludedIndices = excludedRanks.map((rank) => rank - 1)
